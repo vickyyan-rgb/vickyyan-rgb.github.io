@@ -13,18 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://avery-rowan-portfolio.sites.openai.com'),
-  title: 'Avery Rowan — Designer & Developer',
-  description: 'Independent designer and developer creating expressive brands and thoughtful digital experiences.',
+  metadataBase: new URL('https://avery-rowan-portfolio.xd-jasonc-c.chatgpt.site'),
+  title: 'Vicky Yan — Human-Centered Designer',
+  description: 'Portfolio of Vicky Yan, a human-centered designer.',
   openGraph: {
-    title: 'Avery Rowan — Designer & Developer',
-    description: 'Independent designer and developer creating expressive brands and thoughtful digital experiences.',
+    title: 'Vicky Yan — Human-Centered Designer',
+    description: 'Portfolio of Vicky Yan, a human-centered designer.',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Avery Rowan — Designer & Developer',
-    description: 'Independent designer and developer creating expressive brands and thoughtful digital experiences.',
+    title: 'Vicky Yan — Human-Centered Designer',
+    description: 'Portfolio of Vicky Yan, a human-centered designer.',
     images: ['/og.png'],
   },
 };
