@@ -36,3 +36,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# Project videos are published as GitHub Release assets so they can exceed
+# GitHub's 100 MB per-file repository limit.
+/public/projects/*.mp4
