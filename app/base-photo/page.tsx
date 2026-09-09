@@ -4,7 +4,7 @@ import { useLayoutEffect, useState, type MouseEvent } from 'react';
 import { useDynamicReveal } from '../useDynamicReveal';
 
 export default function BasePhotoPage() {
-  const { veilRef, reveal, hideReveal } = useDynamicReveal();
+  const { veilRef, reveal, hideReveal } = useDynamicReveal(0.5);
   const [instantReturn, setInstantReturn] = useState(false);
 
   useLayoutEffect(() => {

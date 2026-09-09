@@ -4,10 +4,10 @@ import { useEffect, useRef } from 'react';
 
 type PointerSample = { x: number; y: number; time: number };
 
-export function useDynamicReveal() {
+export function useDynamicReveal(scale = 1) {
   const veilRef = useRef<HTMLDivElement>(null);
   const lastPointer = useRef<PointerSample | null>(null);
-  const radius = useRef(215);
+  const radius = useRef(215 * scale);
   const stillTimer = useRef<number | null>(null);
 
   useEffect(() => () => {
@@ -15,8 +15,8 @@ export function useDynamicReveal() {
   }, []);
 
   const limits = () => window.innerWidth <= 700
-    ? { resting: 145, maximum: 300 }
-    : { resting: 215, maximum: 450 };
+    ? { resting: 145 * scale, maximum: 300 * scale }
+    : { resting: 215 * scale, maximum: 450 * scale };
 
   const setRadius = (value: number) => {
     radius.current = value;

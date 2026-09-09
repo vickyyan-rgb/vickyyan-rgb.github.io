@@ -73,7 +73,7 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .base-experience { position:relative; min-height:100vh; overflow:hidden; background:#fff; }
 .base-experience nav { border-bottom:0; }
 .base-photo-layer { position:fixed; inset:0; background:url('/interaction-base.jpg') center/cover no-repeat; animation:study-rest-in 1.15s .75s both cubic-bezier(.22,.75,.25,1); }
-.base-white-veil { --x:-500px; --y:-500px; --reveal-size:215px; position:relative; min-height:100vh; transition:--reveal-size .18s ease-out; }
+.base-white-veil { --x:-500px; --y:-500px; --reveal-size:108px; position:relative; min-height:100vh; transition:--reveal-size .18s ease-out; }
 .base-white-veil::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background:#fff url('/interaction-top.jpg') center/cover no-repeat; -webkit-mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 48%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.48) 79%,#000 100%); mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 48%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.48) 79%,#000 100%); animation:study-rest-in 1.15s .75s both cubic-bezier(.22,.75,.25,1); }
 .base-experience nav { animation:study-chrome-in .75s 1.05s both ease; }
 .base-copy { position:relative; z-index:2; min-height:calc(100vh - 86px); padding:7vw 4vw 5vw; display:flex; flex-direction:column; justify-content:flex-end; pointer-events:none; }
@@ -89,7 +89,7 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 @keyframes study-title-in { from { opacity:0; transform:translate(-50%,-44%); letter-spacing:.24em; } to { opacity:1; transform:translate(-50%,-50%); letter-spacing:.14em; } }
 @keyframes study-rest-in { from { opacity:0; } to { opacity:1; } }
 @keyframes study-chrome-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
-@media (max-width:700px) { .base-white-veil { --reveal-size:145px; }.base-white-veil::before { -webkit-mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 46%,rgba(0,0,0,.12) 61%,rgba(0,0,0,.48) 79%,#000 100%); mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 46%,rgba(0,0,0,.12) 61%,rgba(0,0,0,.48) 79%,#000 100%); }.base-copy { padding:28px 22px 72px; }.base-index { right:22px; bottom:28px; } }
+@media (max-width:700px) { .base-white-veil { --reveal-size:73px; }.base-white-veil::before { -webkit-mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 46%,rgba(0,0,0,.12) 61%,rgba(0,0,0,.48) 79%,#000 100%); mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 46%,rgba(0,0,0,.12) 61%,rgba(0,0,0,.48) 79%,#000 100%); }.base-copy { padding:28px 22px 72px; }.base-index { right:22px; bottom:28px; } }
 
 .architecture-page { min-height:100vh; background:#fff; color:#080808; }
 .architecture-nav { position:relative; border-bottom:1px solid #111; }
