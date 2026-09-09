@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type MouseEvent } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import ProjectVideo from './ProjectVideo';
 import { useDynamicReveal } from './useDynamicReveal';
@@ -56,6 +56,7 @@ const projects: Project[] = [
 export default function Home() {
   const [intro, setIntro] = useState(true);
   const [leavingForStudy, setLeavingForStudy] = useState(false);
+  const experienceRef = useRef<HTMLElement>(null);
   const { veilRef, reveal, hideReveal } = useDynamicReveal();
 
   useEffect(() => {
@@ -77,6 +78,30 @@ export default function Home() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) return;
+
+    let animationFrame = 0;
+    const updateParallax = () => {
+      const scrollDistance = Math.min(window.scrollY, window.innerHeight * 1.5);
+      experienceRef.current?.style.setProperty('--parallax-y', `${scrollDistance}px`);
+      animationFrame = 0;
+    };
+    const onScroll = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
   const enterStudy = (event: MouseEvent<HTMLAnchorElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
@@ -89,6 +114,7 @@ export default function Home() {
 
   return (
     <main
+      ref={experienceRef}
       className="experience"
       onPointerMove={(event) => reveal(event.clientX, event.clientY)}
       onPointerLeave={hideReveal}
