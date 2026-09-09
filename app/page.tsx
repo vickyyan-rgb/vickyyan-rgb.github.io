@@ -53,6 +53,13 @@ const projects: Project[] = [
   },
 ];
 
+const architectureProjects = [
+  { number: '06', slug: 'battery-park', title: 'Battery Park', field: 'Landscape + ecological design', year: '2024–25' },
+  { number: '07', slug: 'athletic-centre', title: 'Athletic Centre', field: 'Adaptive reuse + circulation', year: '2024–25' },
+  { number: '08', slug: 'schrodingers', title: "Schrödinger's", field: 'Spatial systems study', year: '2024–25' },
+  { number: '09', slug: 'dexamenoi-square', title: 'Dexamenoi Square', field: 'Public space + landscape', year: '2024–25' },
+];
+
 export default function Home() {
   const [intro, setIntro] = useState(true);
   const [leavingForStudy, setLeavingForStudy] = useState(false);
@@ -192,6 +199,19 @@ export default function Home() {
                   </a>
                 </div>
               </details>
+            ))}
+            {architectureProjects.map((project) => (
+              <a
+                className="architecture-project-link"
+                href={`/architecture#${project.slug}`}
+                key={project.slug}
+                aria-label={`Open architecture project: ${project.title}`}
+              >
+                <span className="project-number">{project.number}</span>
+                <span className="project-title">{project.title}</span>
+                <span className="project-field">{project.field}</span>
+                <span className="project-year">{project.year}</span>
+              </a>
             ))}
           </div>
 
