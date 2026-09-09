@@ -49,7 +49,6 @@ export default function ArchitecturePage() {
       <nav className="architecture-index" aria-label="Architecture projects">
         {architectureProjects.map((project) => (
           <a href={`#${project.slug}`} key={project.slug}>
-            <span>{project.number}</span>
             <strong>{project.title}</strong>
           </a>
         ))}
