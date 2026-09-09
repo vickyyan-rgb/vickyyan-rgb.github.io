@@ -22,8 +22,8 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .landing-copy>p { text-transform:uppercase; letter-spacing:.22em; font-size:11px; margin:0 0 32px; }
 .landing h1 { margin:0; font-weight:500; font-size:clamp(34px,5.2vw,78px); line-height:.98; letter-spacing:-.055em; }
 .landing-copy>span { display:block; max-width:780px; margin:34px auto 0; font:400 clamp(13px,1.05vw,16px)/1.65 var(--font-inter),Arial,sans-serif; }
-.discipline-nav { width:min(920px,86vw); margin:56px auto 0; display:flex; justify-content:center; align-items:center; gap:clamp(34px,6vw,96px); }
-.discipline-nav a { display:inline-block; font-size:clamp(17px,1.7vw,26px); font-weight:500; letter-spacing:-.035em; transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s ease; transform-origin:center; }
+.discipline-nav { width:max-content; max-width:100%; margin:18px auto 0; display:flex; justify-content:center; align-items:center; gap:clamp(20px,2.5vw,38px); }
+.discipline-nav a { display:inline-block; font-size:clamp(14px,1.15vw,17px); font-weight:500; letter-spacing:-.02em; transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s ease; transform-origin:center; }
 .discipline-nav a:hover,.discipline-nav a:focus-visible { transform:scale(1.12); outline:none; }
 .discipline-nav:has(a:hover) a:not(:hover) { opacity:.42; }
 .index-mark { position:absolute; right:4vw; bottom:38px; font:11px var(--font-inter),Arial,sans-serif; }
@@ -123,8 +123,8 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .film-card .project-video { grid-column:auto; border:1px solid #111; }
 .film-card .project-video video { aspect-ratio:16/9; object-fit:contain; }
 @media (max-width:700px) {
-  .discipline-nav { width:100%; margin-top:40px; flex-wrap:wrap; gap:20px 34px; }
-  .discipline-nav a { font-size:18px; }
+  .discipline-nav { width:max-content; margin-top:16px; flex-wrap:wrap; gap:14px 24px; }
+  .discipline-nav a { font-size:14px; }
   .architecture-hero { min-height:58vh; padding:90px 22px 48px; grid-template-columns:1fr; }
   .architecture-hero h1,.architecture-hero>span { grid-column:1; }
   .architecture-hero h1 { font-size:22vw; }
