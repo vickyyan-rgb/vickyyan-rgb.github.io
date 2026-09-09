@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type MouseEvent } from 'react';
+import Link from 'next/link';
 import ProjectVideo from './ProjectVideo';
 import { useDynamicReveal } from './useDynamicReveal';
 
@@ -100,14 +101,19 @@ export default function Home() {
           <div><a href="/resume/vicky-yan-resume-2026.pdf" target="_blank" rel="noreferrer">Resume</a><a href="https://www.linkedin.com/in/vickytongyan/" target="_blank" rel="noreferrer">LinkedIn</a><a href="mailto:yanvicky@berkeley.edu">yanvicky@berkeley.edu</a><a href="tel:+14375668895">437-566-8895</a></div>
         </nav>
 
-        <a className="landing" id="top" href="/base-photo" onClick={enterStudy} aria-label="Open interactive visual study">
+        <section className="landing" id="top">
           <div className="landing-copy">
             <p>Vicky Yan</p>
             <h1>Product Designer /<br />Human-AI Interaction</h1>
             <span>I&apos;m a multidisciplinary designer exploring how AI and emerging technologies can reshape the way people interact with products and environments.</span>
+            <div className="discipline-nav" aria-label="Explore Vicky Yan's work by discipline">
+              <Link href="/architecture">Architecture</Link>
+              <Link href="/base-photo" onClick={enterStudy}>Design</Link>
+              <Link href="/playground">Playground</Link>
+            </div>
           </div>
           <div className="index-mark">01</div>
-        </a>
+        </section>
 
         <section className="project-index" id="work">
           <header className="projects-heading">

@@ -16,12 +16,16 @@ a { color:inherit; text-decoration:none; }
 nav { position:relative; z-index:2; height:86px; padding:0 4vw; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:.13em; font-size:11px; }
 .nav-name { font-size:14px; font-weight:650; letter-spacing:-.02em; text-transform:none; }.nav-name::after { content:' /'; font-weight:400; }
 nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
-.landing { position:relative; z-index:1; min-height:calc(100vh - 86px); display:grid; place-items:center; padding:8vw 5vw 6vw; cursor:pointer; }
+.landing { position:relative; z-index:1; min-height:calc(100vh - 86px); display:grid; place-items:center; padding:8vw 5vw 6vw; }
 .landing:focus-visible { outline:1px solid #111; outline-offset:-10px; }
 .landing-copy { text-align:center; animation:content-in 1.3s .2s both cubic-bezier(.2,.8,.2,1); }
 .landing-copy>p { text-transform:uppercase; letter-spacing:.22em; font-size:11px; margin:0 0 32px; }
 .landing h1 { margin:0; font-weight:500; font-size:clamp(34px,5.2vw,78px); line-height:.98; letter-spacing:-.055em; }
 .landing-copy>span { display:block; max-width:780px; margin:34px auto 0; font:400 clamp(13px,1.05vw,16px)/1.65 var(--font-inter),Arial,sans-serif; }
+.discipline-nav { width:min(920px,86vw); margin:56px auto 0; border-top:1px solid #111; display:grid; grid-template-columns:repeat(3,1fr); }
+.discipline-nav a { min-height:102px; border-right:1px solid #111; display:grid; place-items:center; font-size:clamp(17px,1.7vw,26px); font-weight:500; letter-spacing:-.035em; transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s ease,color .3s ease; transform-origin:center; }
+.discipline-nav a:last-child { border-right:0; }
+.discipline-nav a:hover,.discipline-nav a:focus-visible { position:relative; z-index:1; background:#111; color:#fff; transform:scale(1.075); outline:none; }
 .index-mark { position:absolute; right:4vw; bottom:38px; font:11px var(--font-inter),Arial,sans-serif; }
 .page-transition { position:fixed; z-index:15; inset:0; pointer-events:none; background:#fff; opacity:0; transition:opacity .5s cubic-bezier(.65,0,.35,1); }
 .page-transition.is-active { opacity:1; }
@@ -84,3 +88,56 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 @keyframes study-rest-in { from { opacity:0; } to { opacity:1; } }
 @keyframes study-chrome-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
 @media (max-width:700px) { .base-white-veil { --reveal-size:145px; }.base-white-veil::before { -webkit-mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 46%,rgba(0,0,0,.12) 61%,rgba(0,0,0,.48) 79%,#000 100%); mask-image:radial-gradient(circle var(--reveal-size) at var(--x) var(--y),transparent 0 46%,rgba(0,0,0,.12) 61%,rgba(0,0,0,.48) 79%,#000 100%); }.base-copy { padding:28px 22px 72px; }.base-index { right:22px; bottom:28px; } }
+
+.architecture-page { min-height:100vh; background:#fff; color:#080808; }
+.architecture-nav { position:relative; border-bottom:1px solid #111; }
+.architecture-hero { min-height:72vh; padding:10vw 4vw 6vw; display:grid; grid-template-columns:1fr 2fr; align-content:end; gap:26px; }
+.architecture-hero>p,.architecture-hero>span { margin:0; font-size:10px; text-transform:uppercase; letter-spacing:.17em; }
+.architecture-hero h1 { grid-column:2; margin:0; font-size:clamp(76px,14vw,220px); line-height:.75; font-weight:500; letter-spacing:-.085em; }
+.architecture-hero>span { grid-column:2; max-width:520px; line-height:1.6; opacity:.56; }
+.architecture-index { position:relative; height:auto; padding:0 4vw; border-block:1px solid #111; display:grid; grid-template-columns:repeat(4,1fr); gap:0; text-transform:none; letter-spacing:normal; }
+.architecture-index a { min-height:124px; padding:20px; border-right:1px solid #111; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; transition:background .25s ease,color .25s ease,transform .28s cubic-bezier(.2,.8,.2,1); }
+.architecture-index a:first-child { border-left:1px solid #111; }
+.architecture-index a:hover,.architecture-index a:focus-visible { position:relative; z-index:1; background:#111; color:#fff; transform:scale(1.04); outline:none; }
+.architecture-index span { font-size:9px; letter-spacing:.13em; }
+.architecture-index strong { font-size:clamp(16px,1.6vw,25px); font-weight:500; letter-spacing:-.04em; }
+.architecture-project { scroll-margin-top:20px; padding:11vw 4vw 5vw; border-bottom:1px solid #111; }
+.architecture-project>header { min-height:42vh; display:grid; grid-template-columns:1fr 2fr; align-content:start; gap:18px; }
+.architecture-project>header span { font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+.architecture-project>header h2 { grid-column:2; margin:0; font-size:clamp(52px,9vw,140px); line-height:.88; font-weight:500; letter-spacing:-.07em; }
+.architecture-project>header p { grid-column:2; max-width:620px; margin:16px 0 0; font-size:12px; line-height:1.55; text-transform:uppercase; letter-spacing:.12em; opacity:.58; }
+.architecture-spreads { display:grid; gap:2px; background:#e8e8e8; border:1px solid #e8e8e8; }
+.architecture-spreads figure { margin:0; overflow:hidden; background:#f6f6f6; }
+.architecture-spreads img { display:block; width:100%; height:auto; }
+.architecture-back { min-height:150px; padding:0 4vw; display:flex; align-items:center; justify-content:center; background:#111; color:#fff; font-size:12px; text-transform:uppercase; letter-spacing:.17em; transition:background .25s ease,color .25s ease; }
+.architecture-back:hover,.architecture-back:focus-visible { background:#fff; color:#111; outline:1px solid #111; outline-offset:-1px; }
+.playground-page { min-height:100vh; background:#fff; }
+.playground-page nav { border-bottom:1px solid #111; }
+.playground-header { min-height:52vh; padding:9vw 4vw 5vw; display:grid; grid-template-columns:1fr 2fr; align-content:end; gap:24px; }
+.playground-header p { margin:0; font-size:10px; text-transform:uppercase; letter-spacing:.17em; }
+.playground-header h1 { grid-column:2; margin:0; font-size:clamp(76px,14vw,220px); line-height:.75; font-weight:500; letter-spacing:-.085em; }
+.film-grid { border-top:1px solid #111; padding:4vw; display:grid; grid-template-columns:1fr 1fr; gap:4vw 18px; }
+.film-card { min-width:0; }
+.film-card>header { min-height:122px; padding:18px 0; border-top:1px solid #111; display:grid; grid-template-columns:52px 1fr; align-content:start; gap:14px; }
+.film-card>header span { padding-top:4px; font-size:9px; letter-spacing:.15em; text-transform:uppercase; }
+.film-card>header h2 { margin:0; font-size:clamp(20px,2.2vw,34px); line-height:1.04; font-weight:500; letter-spacing:-.045em; overflow-wrap:anywhere; }
+.film-card .project-video { grid-column:auto; border:1px solid #111; }
+.film-card .project-video video { aspect-ratio:16/9; object-fit:contain; }
+@media (max-width:700px) {
+  .discipline-nav { width:100%; margin-top:40px; grid-template-columns:1fr; border-bottom:1px solid #111; }
+  .discipline-nav a { min-height:66px; border-right:0; border-bottom:1px solid #111; font-size:18px; }
+  .discipline-nav a:last-child { border-bottom:0; }
+  .architecture-hero { min-height:58vh; padding:90px 22px 48px; grid-template-columns:1fr; }
+  .architecture-hero h1,.architecture-hero>span { grid-column:1; }
+  .architecture-hero h1 { font-size:22vw; }
+  .architecture-index { padding:0; grid-template-columns:1fr 1fr; }
+  .architecture-index a,.architecture-index a:first-child { min-height:96px; border:0; border-right:1px solid #111; border-bottom:1px solid #111; }
+  .architecture-project { padding:92px 12px 40px; }
+  .architecture-project>header { min-height:34vh; grid-template-columns:1fr; }
+  .architecture-project>header h2,.architecture-project>header p { grid-column:1; }
+  .architecture-project>header h2 { font-size:15vw; }
+  .playground-header { min-height:42vh; padding:88px 22px 44px; grid-template-columns:1fr; }
+  .playground-header h1 { grid-column:1; font-size:22vw; }
+  .film-grid { padding:34px 22px 70px; grid-template-columns:1fr; gap:64px; }
+  .film-card>header { min-height:100px; }
+}
