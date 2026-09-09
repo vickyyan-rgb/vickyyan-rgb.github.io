@@ -23,21 +23,22 @@ export function useDynamicReveal(scale = 1) {
     veilRef.current?.style.setProperty('--reveal-size', `${Math.round(value)}px`);
   };
 
-  const reveal = (x: number, y: number) => {
+  const reveal = (x: number, y: number, sizeMultiplier = 1) => {
     const veil = veilRef.current;
     if (!veil) return;
 
     const now = performance.now();
     const previous = lastPointer.current;
     const { resting, maximum } = limits();
-    let target = resting;
+    const multiplier = Math.max(0.25, sizeMultiplier);
+    let target = resting * multiplier;
 
     if (previous) {
       const distance = Math.hypot(x - previous.x, y - previous.y);
       const elapsed = Math.max(8, now - previous.time);
       const speed = distance / elapsed;
       const velocity = Math.min(speed / 2.2, 1);
-      target = resting + (maximum - resting) * velocity;
+      target = (resting + (maximum - resting) * velocity) * multiplier;
     }
 
     const smoothed = radius.current * 0.52 + target * 0.48;
@@ -48,7 +49,7 @@ export function useDynamicReveal(scale = 1) {
 
     if (stillTimer.current !== null) window.clearTimeout(stillTimer.current);
     stillTimer.current = window.setTimeout(() => {
-      setRadius(resting);
+      setRadius(resting * multiplier);
       lastPointer.current = null;
     }, 120);
   };

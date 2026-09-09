@@ -59,8 +59,9 @@ export default function BasePhotoPage() {
       className={`base-experience ${instantReturn ? 'is-instant' : ''} ${hotspotProject ? 'is-hotspot-active' : ''}`}
       onClick={openProjectHotspot}
       onPointerMove={(event) => {
-        reveal(event.clientX, event.clientY);
-        setHotspotProject(projectAtPoint(event.currentTarget, event.clientX, event.clientY));
+        const project = projectAtPoint(event.currentTarget, event.clientX, event.clientY);
+        reveal(event.clientX, event.clientY, project ? 1.75 : 1);
+        setHotspotProject(project);
       }}
       onPointerLeave={() => {
         hideReveal();
