@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import ProjectVideo from './ProjectVideo';
 import YouMeWeItCaseStudy from './YouMeWeItCaseStudy';
+import EmbodiedCognitionCaseStudy from './EmbodiedCognitionCaseStudy';
 import { useDynamicReveal } from './useDynamicReveal';
 
 type Project = {
@@ -168,6 +169,8 @@ export default function Home() {
                 </summary>
                 {project.slug === 'you-me-we-it' && project.video && project.detail ? (
                   <YouMeWeItCaseStudy video={project.video} cover={project.cover} detail={project.detail} />
+                ) : project.slug === 'embodied-cognition' && project.video ? (
+                  <EmbodiedCognitionCaseStudy video={project.video} />
                 ) : (
                 <div className="project-body">
                   <div className="project-opening" aria-hidden="true">
