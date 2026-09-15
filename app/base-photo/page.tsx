@@ -3,16 +3,32 @@
 import { useLayoutEffect, useState, type MouseEvent } from 'react';
 import { useDynamicReveal } from '../useDynamicReveal';
 
+type ProjectSlug = 'you-me-we-it' | 'embodied-cognition' | 'sketch-a-home' | 'block-sketch' | 'block';
+
+const PROJECT_TITLES: Record<ProjectSlug, string> = {
+  'you-me-we-it': 'You / Me / We / It',
+  'embodied-cognition': 'Embodied Cognition',
+  'sketch-a-home': 'Sketch-a-home',
+  'block-sketch': 'Block / Sketch',
+  block: 'Block',
+};
+
+type HotspotTitle = {
+  project: ProjectSlug;
+  left: number;
+  top: number;
+};
+
 export default function BasePhotoPage() {
   const { veilRef, reveal, hideReveal } = useDynamicReveal(0.5);
   const [instantReturn, setInstantReturn] = useState(false);
-  const [hotspotProject, setHotspotProject] = useState<string | null>(null);
+  const [hotspotTitle, setHotspotTitle] = useState<HotspotTitle | null>(null);
 
   useLayoutEffect(() => {
     setInstantReturn(new URLSearchParams(window.location.search).has('instant'));
   }, []);
 
-  const projectAtPoint = (element: HTMLElement, clientX: number, clientY: number) => {
+  const projectAtPoint = (element: HTMLElement, clientX: number, clientY: number): ProjectSlug | null => {
     const sourceWidth = 2702;
     const sourceHeight = 1698;
     const rect = element.getBoundingClientRect();
@@ -39,12 +55,31 @@ export default function BasePhotoPage() {
     const imageX = (clientX - rect.left - offsetX) / scale;
     const imageY = (clientY - rect.top - offsetY) / scale;
 
-    const hotspots = [
+    const hotspots: Array<{ x1: number; x2: number; y1: number; y2: number; project: ProjectSlug }> = [
       { x1: 370, x2: 900, y1: 250, y2: 580, project: 'you-me-we-it' },
     ];
     return hotspots.find(({ x1, x2, y1, y2 }) =>
       imageX >= x1 && imageX <= x2 && imageY >= y1 && imageY <= y2
     )?.project ?? null;
+  };
+
+  const titlePositionForProject = (element: HTMLElement, project: ProjectSlug) => {
+    const rect = element.getBoundingClientRect();
+
+    if (project === 'embodied-cognition') return { left: rect.width * 0.75, top: rect.height * 0.25 };
+    if (project === 'sketch-a-home') return { left: rect.width / 6, top: rect.height * 0.75 };
+    if (project === 'block-sketch') return { left: rect.width * 0.5, top: rect.height * 0.75 };
+    if (project === 'block') return { left: rect.width * (5 / 6), top: rect.height * 0.75 };
+
+    const sourceWidth = 2702;
+    const sourceHeight = 1698;
+    const scale = Math.max(rect.width / sourceWidth, rect.height / sourceHeight);
+    const offsetX = (rect.width - sourceWidth * scale) / 2;
+    const offsetY = (rect.height - sourceHeight * scale) / 2;
+    return {
+      left: offsetX + 635 * scale,
+      top: offsetY + 415 * scale,
+    };
   };
 
   const openProjectHotspot = (event: MouseEvent<HTMLElement>) => {
@@ -56,16 +91,20 @@ export default function BasePhotoPage() {
 
   return (
     <main
-      className={`base-experience ${instantReturn ? 'is-instant' : ''} ${hotspotProject ? 'is-hotspot-active' : ''}`}
+      className={`base-experience ${instantReturn ? 'is-instant' : ''} ${hotspotTitle ? 'is-hotspot-active' : ''}`}
       onClick={openProjectHotspot}
       onPointerMove={(event) => {
         const project = projectAtPoint(event.currentTarget, event.clientX, event.clientY);
         reveal(event.clientX, event.clientY, project ? 1.75 : 1);
-        setHotspotProject(project);
+        setHotspotTitle((current) => {
+          if (!project) return current ? null : current;
+          if (current?.project === project) return current;
+          return { project, ...titlePositionForProject(event.currentTarget, project) };
+        });
       }}
       onPointerLeave={() => {
         hideReveal();
-        setHotspotProject(null);
+        setHotspotTitle(null);
       }}
     >
       <div className="base-photo-layer" aria-hidden="true" />
@@ -79,6 +118,16 @@ export default function BasePhotoPage() {
           <p><span>Interactive study / 2026</span></p>
         </section>
       </div>
+      {hotspotTitle && (
+        <p
+          key={hotspotTitle.project}
+          className="base-hotspot-title"
+          style={{ left: hotspotTitle.left, top: hotspotTitle.top }}
+          aria-live="polite"
+        >
+          {PROJECT_TITLES[hotspotTitle.project]}
+        </p>
+      )}
     </main>
   );
 }

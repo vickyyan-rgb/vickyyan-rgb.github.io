@@ -15,8 +15,8 @@ export function useDynamicReveal(scale = 1) {
   }, []);
 
   const limits = () => window.innerWidth <= 700
-    ? { resting: 145 * scale, maximum: 300 * scale }
-    : { resting: 215 * scale, maximum: 450 * scale };
+    ? { resting: 145 * scale, maximum: 380 * scale }
+    : { resting: 215 * scale, maximum: 580 * scale };
 
   const setRadius = (value: number) => {
     radius.current = value;
@@ -37,8 +37,9 @@ export function useDynamicReveal(scale = 1) {
       const distance = Math.hypot(x - previous.x, y - previous.y);
       const elapsed = Math.max(8, now - previous.time);
       const speed = distance / elapsed;
-      const velocity = Math.min(speed / 2.2, 1);
-      target = (resting + (maximum - resting) * velocity) * multiplier;
+      const fastMovement = Math.min(Math.max((speed - 0.5) / 1.3, 0), 1);
+      const easedMovement = fastMovement * fastMovement * (3 - 2 * fastMovement);
+      target = (resting + (maximum - resting) * easedMovement) * multiplier;
     }
 
     const smoothed = radius.current * 0.52 + target * 0.48;
