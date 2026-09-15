@@ -180,11 +180,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
           <h4>The visualization learned to breathe, gather, and respond.</h4>
           <p>Iterations moved from fixed paths to a fluid particle system. Each circle retained an individual rhythm while remaining responsive to the group, allowing similarity and distance to emerge through motion, scale, and colour.</p>
         </div>
-        <figure className="case-study-visual-main"><img src={`${CASE_ASSET}/touchdesigner-final.jpg`} alt="Final TouchDesigner network and luminous thermal form" loading="lazy" /></figure>
-        <div className="case-study-comparison">
-          <figure><img src={`${CASE_ASSET}/seeing-hot-cold.jpg`} alt="A hot and a cold drink visualized together" loading="lazy" /><figcaption>Different temperatures / distinct paths</figcaption></figure>
-          <figure><img src={`${CASE_ASSET}/seeing-both-hot.jpg`} alt="Two hot drinks visualized together" loading="lazy" /><figcaption>Similar temperatures / shared form</figcaption></figure>
-        </div>
       </section>
 
       <section className="case-study-outcome" id="case-study-installation">
