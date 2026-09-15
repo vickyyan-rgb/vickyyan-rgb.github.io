@@ -78,6 +78,10 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .you-me-case-study :is(.case-study-intro,.case-study-chapter,.case-study-question,.case-study-journey,.case-study-build,.case-study-visual-system,.case-study-outcome,.case-study-reflection,.case-study-archive) { background:#080808; color:#fff; }
 .you-me-case-study figure { border:0; background:#080808; }
 .you-me-case-study>.project-video { grid-column:1/-1; }
+.case-study-opening { grid-column:1/-1; background:#080808; color:#fff; }
+.case-study-opening-image { min-height:clamp(520px,78vh,980px); background:url('/projects/you-me-case-study/opening-thermal-field.jpg') center/cover no-repeat; }
+.case-study-opening blockquote { margin:0; padding:clamp(52px,7vw,108px) clamp(30px,8vw,130px) clamp(80px,10vw,150px); }
+.case-study-opening blockquote p { max-width:1080px; margin:0 auto; color:#e8e8e8; font-size:clamp(13px,1.05vw,16px); line-height:1.75; letter-spacing:.002em; }
 .case-study-intro { grid-column:2/12; padding:clamp(70px,9vw,140px) 0 clamp(80px,10vw,160px); }
 .case-study-eyebrow,.case-study-copy>span,.case-study-journey header>span,.case-study-outcome header>span,.case-study-reflection>span,.case-study-archive>span { display:block; margin:0 0 24px; color:#aaa; font-size:12px; line-height:1.4; text-transform:uppercase; letter-spacing:.13em; }
 .case-study-intro h3 { max-width:920px; margin:0; font-size:var(--case-display); line-height:1.04; font-weight:500; letter-spacing:-.045em; }
@@ -98,6 +102,8 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .case-study-question p { max-width:920px; margin:90px 0 0; font-size:var(--case-heading); line-height:1.08; font-weight:500; letter-spacing:-.035em; }
 .case-study-concept { grid-template-columns:minmax(0,1.3fr) minmax(280px,.8fr); }
 .case-study-concept figure img { object-fit:contain; }
+.case-study-concept-text { grid-template-columns:1fr; }
+.case-study-concept-text>.case-study-copy { width:min(760px,100%); margin-left:auto; }
 .case-study-journey { grid-column:1/-1; padding:clamp(70px,8vw,125px) clamp(30px,5vw,80px); background:#080808; color:#fff; }
 .case-study-journey header { display:grid; grid-template-columns:.65fr 1.35fr; gap:40px; align-items:start; margin-bottom:clamp(54px,7vw,100px); }
 .case-study-journey ol { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2vw,30px); }
@@ -214,6 +220,10 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
   .project-gallery { grid-template-columns:1fr; }
   .project-gallery figure { aspect-ratio:4/3; }
   .project-body.you-me-case-study { grid-template-columns:1fr; gap:14px; padding:0 0 52px; }
+  .case-study-opening { grid-column:1; }
+  .case-study-opening-image { min-height:58vh; }
+  .case-study-opening blockquote { padding:46px 20px 72px; }
+  .case-study-opening blockquote p { font-size:14px; line-height:1.7; }
   .case-study-intro { grid-column:1; padding:64px 4px 82px; }
   .case-study-intro h3 { font-size:clamp(32px,10vw,46px); }
   .case-study-intro-copy { grid-template-columns:1fr; gap:46px; margin-top:54px; }
