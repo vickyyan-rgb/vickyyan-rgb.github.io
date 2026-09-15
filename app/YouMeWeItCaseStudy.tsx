@@ -52,8 +52,7 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
       <ProjectVideo src={video} title="You / Me / We / It" autoPlay />
 
       <header className="case-study-intro">
-        <p className="case-study-eyebrow">Tangible HCI installation / 2025</p>
-        <h3>A quiet café became a live portrait of social warmth.</h3>
+        <h3>Technology pervades our lives, but when does it intercept us on a real social level?</h3>
         <div className="case-study-intro-copy">
           <p>Café 059 at 1 Spadina once brought students, faculty, and staff into the same room. When it closed, the shared space remained—but its energy disappeared.</p>
           <dl>
@@ -66,7 +65,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-chapter case-study-context">
         <div className="case-study-copy">
-          <span>01 / Site context</span>
           <h4>A social hub shut down</h4>
           <p>Café 059 sits at the centre of the Daniels common area, where people across the university hierarchy once met as equals. Its closure left a focal point without the everyday rituals that made it feel alive.</p>
         </div>
@@ -75,8 +73,7 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-chapter case-study-concept case-study-concept-text">
         <div className="case-study-copy">
-          <span>02 / The idea</span>
-          <h4>Every beverage becomes a living thermal signature.</h4>
+          <h4>Reveal something that is felt but not seen.</h4>
           <p>A custom coaster reads the temperature of a drink and translates it into a breathing projected circle. One drink creates an individual presence; several drinks create a collective field.</p>
           <p>When temperatures align, circles approach and blend. When they diverge, the visual forms hold their distance—making an invisible social condition visible.</p>
         </div>
@@ -84,7 +81,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-journey">
         <header>
-          <span>03 / The encounter</span>
           <h4>From placing to feeling</h4>
         </header>
         <ol>
@@ -113,7 +109,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-build">
         <div className="case-study-copy">
-          <span>04 / Making it real</span>
           <h4>Turning temperature into a reliable interaction.</h4>
           <p>Early prototypes linked four temperature inputs to light before the full projection system was built. Repeated tests stabilized the sensor readings, while custom coaster housings turned exposed electronics into a shared tabletop interface.</p>
           <p className="case-study-tools">Arduino · DHT22 · TouchDesigner · Projection · Digital fabrication</p>
@@ -129,7 +124,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-process-docs">
         <header className="case-study-process-header">
-          <span>05 / Spatial + circuit development</span>
           <h4>The interaction was designed from the room inward.</h4>
           <p>Concept sketches moved from abstract ideas of collective light toward a site-specific café ritual. Technical drawings then coordinated the table, sensor reach, cable paths, electronics enclosure, and circular layers of each coaster.</p>
         </header>
@@ -159,7 +153,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-motion-studies">
         <header className="case-study-process-header">
-          <span>06 / Motion studies</span>
           <h4>Behaviour was tuned through small visual experiments.</h4>
           <p>Each study isolates a relationship between readings—contrast, similarity, overlap, or separation—before those rules are combined in the final projected system.</p>
         </header>
@@ -182,7 +175,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-visual-system">
         <div className="case-study-copy">
-          <span>07 / Drawing social warmth</span>
           <h4>The visualization learned to breathe, gather, and respond.</h4>
           <p>Iterations moved from fixed paths to a fluid particle system. Each circle retained an individual rhythm while remaining responsive to the group, allowing similarity and distance to emerge through motion, scale, and colour.</p>
         </div>
@@ -195,7 +187,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <section className="case-study-outcome">
         <header>
-          <span>08 / Back into the room</span>
           <h4>A shared table became a stage for noticing each other.</h4>
           <p>The final installation invited people to place a drink, find their circle, and follow its encounters. An ordinary café ritual became a live, collective image—projecting energy back into an otherwise quiet room.</p>
         </header>
@@ -207,19 +198,16 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
       </section>
 
       <blockquote className="case-study-reflection">
-        <span>Reflection</span>
         <p>Technology became less of a screen to operate and more of a material for noticing one another.</p>
       </blockquote>
 
       <section className="case-study-archive">
-        <span>Project archive</span>
         <figure><img src={cover} alt="You / Me / We / It project overview" loading="lazy" /></figure>
         <figure><img src={detail} alt="You / Me / We / It complete process and interaction system" loading="lazy" /></figure>
       </section>
 
       <section className="case-study-final-gallery">
         <header className="case-study-process-header">
-          <span>Final product</span>
           <h4>Four drinks, one shared field.</h4>
           <p>The finished installation brings the sensing coasters, central electronics, and live projection together at Café 059. Individual temperatures remain visible while gathering into a collective image of the table.</p>
         </header>
