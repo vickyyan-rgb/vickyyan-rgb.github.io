@@ -72,7 +72,7 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 #you-me-we-it[open] summary { color:#fff; }
 #you-me-we-it .project-back,#embodied-cognition .project-back { border-color:#fff; background:#080808; color:#fff; }
 #you-me-we-it .project-back:hover,#you-me-we-it .project-back:focus-visible,#embodied-cognition .project-back:hover,#embodied-cognition .project-back:focus-visible { background:#fff; color:#080808; }
-.project-body.you-me-case-study { grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(16px,2vw,30px); padding-top:0; }
+.project-body.you-me-case-study { grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(16px,2vw,30px); padding:0 0 5vw; }
 .you-me-case-study { --case-display:clamp(34px,4.2vw,64px); --case-heading:clamp(26px,3.1vw,46px); --case-body:clamp(16px,1.05vw,18px); background:#080808; color:#fff; }
 .you-me-case-study :is(h3,h4,h5,p,dt,dd,span,figcaption) { font-family:var(--font-inter),Arial,sans-serif; }
 .you-me-case-study :is(.case-study-intro,.case-study-chapter,.case-study-question,.case-study-journey,.case-study-build,.case-study-visual-system,.case-study-outcome,.case-study-reflection,.case-study-archive) { background:#080808; color:#fff; }
@@ -80,8 +80,8 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .you-me-case-study>.project-video { grid-column:1/-1; border:0; }
 .case-study-opening { grid-column:1/-1; background:#080808; color:#fff; }
 .case-study-opening-image { min-height:clamp(520px,78vh,980px); background:url('/projects/you-me-case-study/opening-thermal-field.jpg') center/cover no-repeat; }
-.case-study-opening blockquote { margin:0; padding:clamp(52px,7vw,108px) clamp(30px,8vw,130px) clamp(80px,10vw,150px); }
-.case-study-opening blockquote p { max-width:1080px; margin:0 auto; color:#e8e8e8; font-size:clamp(13px,1.05vw,16px); line-height:1.75; letter-spacing:.002em; }
+.case-study-opening blockquote { width:100%; box-sizing:border-box; margin:0 auto; padding:clamp(52px,7vw,108px) 0 clamp(80px,10vw,150px); }
+.case-study-opening blockquote p { width:100%; max-width:none; margin:0 auto; color:#e8e8e8; font-size:clamp(13px,1.05vw,16px); line-height:1.75; letter-spacing:.002em; }
 .case-study-intro { grid-column:2/12; padding:clamp(70px,9vw,140px) 0 clamp(80px,10vw,160px); }
 .case-study-eyebrow,.case-study-copy>span,.case-study-journey header>span,.case-study-outcome header>span,.case-study-reflection>span,.case-study-archive>span { display:block; margin:0 0 24px; color:#aaa; font-size:12px; line-height:1.4; text-transform:uppercase; letter-spacing:.13em; }
 .case-study-intro h3 { max-width:920px; margin:0; font-size:var(--case-display); line-height:1.04; font-weight:500; letter-spacing:-.045em; }
@@ -222,7 +222,7 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
   .project-body.you-me-case-study { grid-template-columns:1fr; gap:14px; padding:0 0 52px; }
   .case-study-opening { grid-column:1; }
   .case-study-opening-image { min-height:58vh; }
-  .case-study-opening blockquote { padding:46px 20px 72px; }
+  .case-study-opening blockquote { padding:46px 0 72px; }
   .case-study-opening blockquote p { font-size:14px; line-height:1.7; }
   .case-study-intro { grid-column:1; padding:64px 4px 82px; }
   .case-study-intro h3 { font-size:clamp(32px,10vw,46px); }
