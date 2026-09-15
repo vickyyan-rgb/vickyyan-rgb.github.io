@@ -153,7 +153,6 @@ export default function Home() {
         <section className="project-index" id="work">
           <header className="projects-heading">
             <p>Selected work / 2022–2025</p>
-            <h2>Interfaces between<br />people, machines<br />and environments.</h2>
             <span>Open a project to explore</span>
           </header>
 
