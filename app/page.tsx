@@ -167,7 +167,7 @@ export default function Home() {
                   <span className="project-toggle" aria-hidden="true">＋</span>
                 </summary>
                 {project.slug === 'you-me-we-it' && project.video && project.detail ? (
-                  <YouMeWeItCaseStudy video={project.video} cover={project.cover} detail={project.detail} />
+                  <YouMeWeItCaseStudy video={project.video} />
                 ) : project.slug === 'embodied-cognition' && project.video ? (
                   <EmbodiedCognitionCaseStudy video={project.video} />
                 ) : (

@@ -4,8 +4,6 @@ import ProcessLoop from './ProcessLoop';
 
 type YouMeWeItCaseStudyProps = {
   video: string;
-  cover: string;
-  detail: string;
 };
 
 const CASE_ASSET = '/projects/you-me-case-study';
@@ -40,7 +38,7 @@ const motionStudies = [
   },
 ];
 
-export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCaseStudyProps) {
+export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
   return (
     <div className="project-body you-me-case-study">
       <section className="case-study-opening" aria-label="You / Me / We / It opening">
@@ -197,11 +195,6 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
       <blockquote className="case-study-reflection" id="case-study-outlook">
         <p>Technology became less of a screen to operate and more of a material for noticing one another.</p>
       </blockquote>
-
-      <section className="case-study-archive">
-        <figure><img src={cover} alt="You / Me / We / It project overview" loading="lazy" /></figure>
-        <figure><img src={detail} alt="You / Me / We / It complete process and interaction system" loading="lazy" /></figure>
-      </section>
 
       <section className="case-study-final-gallery">
         <header className="case-study-process-header">
