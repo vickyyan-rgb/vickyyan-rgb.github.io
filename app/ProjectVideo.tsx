@@ -1,11 +1,12 @@
 'use client';
 
 import { Pause, Play, Volume2, VolumeX } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type ProjectVideoProps = {
   src: string;
   title: string;
+  autoPlay?: boolean;
 };
 
 function formatTime(value: number) {
@@ -15,12 +16,27 @@ function formatTime(value: number) {
   return `${minutes}:${seconds}`;
 }
 
-export default function ProjectVideo({ src, title }: ProjectVideoProps) {
+export default function ProjectVideo({ src, title, autoPlay = false }: ProjectVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(autoPlay);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !autoPlay) return;
+
+    video.muted = true;
+    setMuted(true);
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) void video.play().catch(() => undefined);
+      else video.pause();
+    }, { threshold: 0.35 });
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [autoPlay]);
 
   const togglePlayback = () => {
     const video = videoRef.current;
@@ -41,7 +57,9 @@ export default function ProjectVideo({ src, title }: ProjectVideoProps) {
       <video
         ref={videoRef}
         playsInline
-        preload="metadata"
+        autoPlay={autoPlay}
+        muted={muted}
+        preload={autoPlay ? 'auto' : 'metadata'}
         aria-label={`${title} project video`}
         onClick={togglePlayback}
         onPlay={() => setPlaying(true)}
@@ -51,6 +69,10 @@ export default function ProjectVideo({ src, title }: ProjectVideoProps) {
         onLoadedMetadata={(event) => {
           const video = event.currentTarget;
           setDuration(video.duration);
+          if (autoPlay) {
+            setCurrentTime(video.currentTime);
+            return;
+          }
           const previewTime = Number.isFinite(video.duration)
             ? Math.min(1, Math.max(0, video.duration - 0.05))
             : 1;

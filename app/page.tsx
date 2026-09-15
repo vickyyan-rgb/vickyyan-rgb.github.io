@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import ProjectVideo from './ProjectVideo';
+import YouMeWeItCaseStudy from './YouMeWeItCaseStudy';
 import { useDynamicReveal } from './useDynamicReveal';
 
 type Project = {
@@ -165,6 +166,9 @@ export default function Home() {
                   <span className="project-year">{project.year}</span>
                   <span className="project-toggle" aria-hidden="true">＋</span>
                 </summary>
+                {project.slug === 'you-me-we-it' && project.video && project.detail ? (
+                  <YouMeWeItCaseStudy video={project.video} cover={project.cover} detail={project.detail} />
+                ) : (
                 <div className="project-body">
                   <div className="project-opening" aria-hidden="true">
                     <span />
@@ -198,6 +202,7 @@ export default function Home() {
                     <span>Back to interactive study</span>
                   </a>
                 </div>
+                )}
               </details>
             ))}
             {architectureProjects.map((project) => (
