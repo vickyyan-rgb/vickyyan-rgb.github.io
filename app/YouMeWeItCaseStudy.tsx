@@ -1,3 +1,4 @@
+import CaseStudyRoadmap from './CaseStudyRoadmap';
 import ProjectVideo from './ProjectVideo';
 import ProcessLoop from './ProcessLoop';
 
@@ -51,8 +52,9 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
 
       <ProjectVideo src={video} title="You / Me / We / It" autoPlay />
 
-      <header className="case-study-intro">
+      <header className="case-study-intro" id="case-study-aim">
         <h3>Technology pervades our lives, but when does it intercept us on a real social level?</h3>
+        <CaseStudyRoadmap />
         <div className="case-study-intro-copy">
           <p>Café 059 at 1 Spadina once brought students, faculty, and staff into the same room. When it closed, the shared space remained—but its energy disappeared.</p>
           <dl>
@@ -71,7 +73,7 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
         <figure><img src={`${CASE_ASSET}/site.jpg`} alt="The closed Café 059 at 1 Spadina" loading="lazy" /></figure>
       </section>
 
-      <section className="case-study-chapter case-study-concept case-study-concept-text">
+      <section className="case-study-chapter case-study-concept case-study-concept-text" id="case-study-design-logic">
         <div className="case-study-copy">
           <h4>Reveal something that is felt but not seen.</h4>
           <p>A custom coaster reads the temperature of a drink and translates it into a breathing projected circle. One drink creates an individual presence; several drinks create a collective field.</p>
@@ -107,7 +109,7 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
         </ol>
       </section>
 
-      <section className="case-study-build">
+      <section className="case-study-build" id="case-study-prototype">
         <div className="case-study-copy">
           <h4>Turning temperature into a reliable interaction.</h4>
           <p>Early prototypes linked four temperature inputs to light before the full projection system was built. Repeated tests stabilized the sensor readings, while custom coaster housings turned exposed electronics into a shared tabletop interface.</p>
@@ -185,7 +187,7 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
         </div>
       </section>
 
-      <section className="case-study-outcome">
+      <section className="case-study-outcome" id="case-study-installation">
         <header>
           <h4>A shared table became a stage for noticing each other.</h4>
           <p>The final installation invited people to place a drink, find their circle, and follow its encounters. An ordinary café ritual became a live, collective image—projecting energy back into an otherwise quiet room.</p>
@@ -197,7 +199,7 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
         </div>
       </section>
 
-      <blockquote className="case-study-reflection">
+      <blockquote className="case-study-reflection" id="case-study-outlook">
         <p>Technology became less of a screen to operate and more of a material for noticing one another.</p>
       </blockquote>
 
