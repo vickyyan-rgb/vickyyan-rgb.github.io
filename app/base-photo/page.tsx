@@ -95,11 +95,12 @@ export default function BasePhotoPage() {
       onClick={openProjectHotspot}
       onPointerMove={(event) => {
         const project = projectAtPoint(event.currentTarget, event.clientX, event.clientY);
+        const titlePosition = project ? titlePositionForProject(event.currentTarget, project) : null;
         reveal(event.clientX, event.clientY, project ? 1.75 : 1);
         setHotspotTitle((current) => {
-          if (!project) return current ? null : current;
+          if (!project || !titlePosition) return current ? null : current;
           if (current?.project === project) return current;
-          return { project, ...titlePositionForProject(event.currentTarget, project) };
+          return { project, ...titlePosition };
         });
       }}
       onPointerLeave={() => {
