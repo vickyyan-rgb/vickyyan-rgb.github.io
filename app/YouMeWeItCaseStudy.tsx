@@ -9,6 +9,7 @@ type YouMeWeItCaseStudyProps = {
 
 const CASE_ASSET = '/projects/you-me-case-study';
 const PROCESS_ASSET = `${CASE_ASSET}/process`;
+const FINAL_ASSET = `${CASE_ASSET}/final`;
 
 const motionStudies = [
   {
@@ -213,6 +214,32 @@ export default function YouMeWeItCaseStudy({ video, cover, detail }: YouMeWeItCa
         <span>Project archive</span>
         <figure><img src={cover} alt="You / Me / We / It project overview" loading="lazy" /></figure>
         <figure><img src={detail} alt="You / Me / We / It complete process and interaction system" loading="lazy" /></figure>
+      </section>
+
+      <section className="case-study-final-gallery">
+        <header className="case-study-process-header">
+          <span>Final product</span>
+          <h4>Four drinks, one shared field.</h4>
+          <p>The finished installation brings the sensing coasters, central electronics, and live projection together at Café 059. Individual temperatures remain visible while gathering into a collective image of the table.</p>
+        </header>
+        <figure className="case-study-final-hero">
+          <img src={`${FINAL_ASSET}/projection-detail.jpg`} alt="Close view of the finished luminous temperature visualization" loading="lazy" />
+          <figcaption>Live projection / thermal signatures meeting in one field</figcaption>
+        </figure>
+        <div className="case-study-final-grid">
+          <figure className="case-study-final-overhead">
+            <img src={`${FINAL_ASSET}/table-overhead.jpg`} alt="Overhead view of four sensor coasters connected to the central electronics enclosure" loading="lazy" />
+            <figcaption>Complete tabletop system</figcaption>
+          </figure>
+          <figure className="case-study-final-detail">
+            <img src={`${FINAL_ASSET}/coaster-detail.jpg`} alt="Black mug resting on a finished white sensor coaster in front of the projection" loading="lazy" />
+            <figcaption>Temperature-sensing coaster</figcaption>
+          </figure>
+          <figure className="case-study-final-context">
+            <img src={`${FINAL_ASSET}/cafe-installation.jpg`} alt="The final interactive table and projection installed in Café 059" loading="lazy" />
+            <figcaption>Installed at Café 059</figcaption>
+          </figure>
+        </div>
       </section>
 
       <a className="project-back" href="/base-photo?instant=1"><span>Back to interactive study</span></a>
