@@ -76,7 +76,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
 
       <section className="case-study-problem">
         <header>
-          <h4>A Problem: social hub shut down</h4>
+          <h4>A Problem: Social hub shut down</h4>
           <p>In June 2025, Café 059 shut down. The café was an important part of the Daniels faculty&apos;s social fabric, sitting at the centre of the Daniels common area. Its presence once brought students, faculty, and staff into the same room, where university hierarchy met as equals. Its closure left a focal point without the engagement that made the space feel alive.</p>
         </header>
         <figure className="case-study-problem-photo">
@@ -126,8 +126,8 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
 
       <section className="case-study-motion-studies">
         <header className="case-study-process-header">
-          <h4>Behaviour was tuned through small visual experiments.</h4>
-          <p>Each study isolates a relationship between readings—contrast, similarity, overlap, or separation—before those rules are combined in the final projected system.</p>
+          <h4>You are a line, but which line?</h4>
+          <p>Each circle breathes and distorts to the thermal rhythm of a participant&apos;s drink, directly translating temperature data into a fluid, visual form.</p>
         </header>
         <div className="case-study-motion-grid">
           {motionStudies.map((study, index) => (

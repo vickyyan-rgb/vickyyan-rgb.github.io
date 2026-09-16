@@ -77,7 +77,6 @@ export default function CaseStudyRoadmap() {
     <>
       <div className={`case-study-route-start ${visible ? 'is-visible' : ''}`} aria-hidden="true">
         <span className="case-study-route-horizontal" />
-        <span className="case-study-route-turn" />
       </div>
       {mounted && createPortal(
         <aside

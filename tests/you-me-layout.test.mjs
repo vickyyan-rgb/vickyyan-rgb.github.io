@@ -12,7 +12,7 @@ test('presents the PDF-inspired case-study story before the prototype chapter', 
     'Scope',
     'Technology pervades our lives, but when does it intercept us on a real social level?',
     'Relevance',
-    'A Problem: social hub shut down',
+    'A Problem: Social hub shut down',
     'Reveal something that is felt but not seen.',
     'Design Logic',
     'From placing to feeling',
@@ -79,10 +79,15 @@ test('presents the revised drawings, hover-reveal journey, and reordered motion 
   assert.doesNotMatch(html, /Second draft/);
 
   const placingPosition = html.indexOf('From placing to feeling');
-  const motionPosition = html.indexOf('Behaviour was tuned through small visual experiments.');
+  const motionPosition = html.indexOf('You are a line, but which line?');
   const prototypePosition = html.indexOf('Turning temperature into a reliable interaction.');
   assert.ok(placingPosition < motionPosition, 'motion studies should follow the placing-to-feeling journey');
   assert.ok(motionPosition < prototypePosition, 'motion studies should precede the prototype chapter');
+  assert.match(
+    html,
+    /Each circle breathes and distorts to the thermal rhythm of a participant(?:&#x27;|')s drink, directly translating temperature data into a fluid, visual form\./,
+  );
+  assert.doesNotMatch(html, /case-study-route-turn/);
 
   const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
     .map((match) => match[1]);
@@ -98,6 +103,11 @@ test('presents the revised drawings, hover-reveal journey, and reordered motion 
   assert.match(css, /\.case-study-reveal-card:hover[^}]*figure img[^}]*transform:\s*scale\(1\.06\)/);
   assert.match(css, /\.case-study-reveal-card:hover[^}]*>div[^}]*opacity:\s*1/);
   assert.match(css, /\.case-study-problem-photo[^}]*width:\s*min\(47%,708px\)/);
+  assert.match(css, /\.case-study-problem\s*\{[^}]*padding-top:\s*clamp\(140px,18vw,280px\)/);
+  assert.match(css, /\.case-study-manifesto\s*\{[^}]*padding-top:\s*clamp\(120px,16vw,240px\)/);
+  assert.match(css, /\.case-study-manifesto>h4\s*\{[^}]*text-align:\s*center/);
+  assert.match(css, /\.case-study-manifesto>div\s*\{[^}]*grid-template-columns:\s*1fr[^}]*text-align:\s*center/);
+  assert.doesNotMatch(css, /\.case-study-manifesto p:last-child\s*\{[^}]*font-size:/);
   assert.match(css, /\.case-study-scope-relevance[^}]*border:\s*0/);
   assert.match(css, /\.you-me-case-study \.case-study-logic-diagram img[^}]*filter:\s*none/);
 });
