@@ -51,7 +51,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
       <ProjectVideo src={video} title="You / Me / We / It" autoPlay />
 
       <section className="case-study-scope" id="case-study-aim">
-        <h3>Scope</h3>
+        <h3 className="case-study-scroll-heading">Scope</h3>
         <div className="case-study-scope-panel">
           <header>
             <p>Technology pervades our lives, but when does it intercept us on a real social level?</p>
@@ -104,7 +104,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
       </section>
 
       <section className="case-study-design-logic" id="case-study-design-logic">
-        <h4>Design Logic</h4>
+        <h4 className="case-study-scroll-heading">Design Logic</h4>
         <figure className="case-study-logic-diagram">
           <img src={`${PROCESS_ASSET}/concept-sketches.jpg`} alt="Early concept sketch tracing a drink from placement through sensing to a shared visual response" loading="lazy" />
         </figure>
