@@ -50,59 +50,81 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
 
       <ProjectVideo src={video} title="You / Me / We / It" autoPlay />
 
-      <header className="case-study-intro" id="case-study-aim">
-        <h3>Technology pervades our lives, but when does it intercept us on a real social level?</h3>
-        <CaseStudyRoadmap />
-        <div className="case-study-intro-copy">
-          <p>Café 059 at 1 Spadina once brought students, faculty, and staff into the same room. When it closed, the shared space remained—but its energy disappeared.</p>
-          <dl>
-            <div><dt>Question</dt><dd>How might technology reconnect people without demanding conversation?</dd></div>
-            <div><dt>System</dt><dd>Four sensor coasters, Arduino, TouchDesigner, and live projection</dd></div>
-            <div><dt>Team</dt><dd>Eunia (Zhihuan) Xu, Jack Simon, Satoshi Harimoto, and Vicky Yan</dd></div>
-          </dl>
+      <section className="case-study-scope" id="case-study-aim">
+        <h3>Scope</h3>
+        <div className="case-study-scope-panel">
+          <header>
+            <p>Technology pervades our lives, but when does it intercept us on a real social level?</p>
+            <CaseStudyRoadmap />
+          </header>
+          <div className="case-study-scope-grid">
+            <figure className="case-study-scope-sketch">
+              <img src={`${CASE_ASSET}/scope-installation-sketch.png`} alt="Hand-drawn proposal for the projected café installation" loading="lazy" />
+            </figure>
+            <dl className="case-study-scope-meta">
+              <div className="case-study-scope-relevance">
+                <dt>Relevance</dt>
+                <dd>How can we expand on affordances in the social-architectural domain?</dd>
+              </div>
+              <div>
+                <dt>System</dt>
+                <dd>Four sensor coasters, Arduino, TouchDesigner, and live projection</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>Eunia (Zhihuan) Xu, Jack Simon, Satoshi Harimoto, and Vicky Yan</dd>
+              </div>
+            </dl>
+          </div>
         </div>
-      </header>
-
-      <section className="case-study-chapter case-study-context">
-        <div className="case-study-copy">
-          <h4>A social hub shut down</h4>
-          <p>Café 059 sits at the centre of the Daniels common area, where people across the university hierarchy once met as equals. Its closure left a focal point without the everyday rituals that made it feel alive.</p>
-        </div>
-        <figure><img src={`${CASE_ASSET}/site.jpg`} alt="The closed Café 059 at 1 Spadina" loading="lazy" /></figure>
       </section>
 
-      <section className="case-study-chapter case-study-concept case-study-concept-text" id="case-study-design-logic">
-        <div className="case-study-copy">
-          <h4>Reveal something that is felt but not seen.</h4>
-          <p>A custom coaster reads the temperature of a drink and translates it into a breathing projected circle. One drink creates an individual presence; several drinks create a collective field.</p>
-          <p>When temperatures align, circles approach and blend. When they diverge, the visual forms hold their distance—making an invisible social condition visible.</p>
-        </div>
-      </section>
-
-      <section className="case-study-journey">
+      <section className="case-study-problem">
         <header>
-          <h4>From placing to feeling</h4>
+          <h4>A Problem: social hub shut down</h4>
+          <p>In June 2025, Café 059 shut down. The café was an important part of the Daniels faculty&apos;s social fabric, sitting at the centre of the Daniels common area. Its presence once brought students, faculty, and staff into the same room, where university hierarchy met as equals. Its closure left a focal point without the engagement that made the space feel alive.</p>
         </header>
+        <figure className="case-study-problem-photo">
+          <img src={`${CASE_ASSET}/site.jpg`} alt="The closed Café 059 at 1 Spadina" loading="lazy" />
+        </figure>
+        <div className="case-study-problem-concept">
+          <figure>
+            <img src={`${CASE_ASSET}/scope-social-distance.png`} alt="Diagram connecting tangible design, user experience, Café 059, and the Daniels social fabric" loading="lazy" />
+          </figure>
+          <p>The installation uses tangible design to manifest a conversation between space and interpersonal social distance.</p>
+        </div>
+      </section>
+
+      <section className="case-study-manifesto">
+        <h4>Reveal something that is felt but not seen.</h4>
+        <div>
+          <p>Drawing on the café&apos;s defining element, beverages became the main character in our design. Each drink has a temperature; a coaster reads that temperature and translates it into a spatial experience that connects, curates, and communicates the individual&apos;s relationship to the environment and to others.</p>
+          <p>One drink creates an individual presence, while several drinks form a collective field.</p>
+        </div>
+      </section>
+
+      <section className="case-study-design-logic" id="case-study-design-logic">
+        <h4>Design Logic</h4>
+        <figure className="case-study-logic-diagram">
+          <img src={`${PROCESS_ASSET}/concept-sketches.jpg`} alt="Early concept sketch tracing a drink from placement through sensing to a shared visual response" loading="lazy" />
+        </figure>
+        <h5>From placing to feeling</h5>
         <ol>
           <li>
             <figure><img src={`${CASE_ASSET}/placing.png`} alt="A hand placing a drink onto a coaster" loading="lazy" /></figure>
-            <span>01</span><h5>Placing</h5>
-            <p>A participant sets a drink on one of four custom coasters.</p>
+            <div><span>I</span><h6>Placing</h6><p>A participant sets a drink on one of four custom coasters.</p></div>
           </li>
           <li>
             <figure><img src={`${CASE_ASSET}/sensing.png`} alt="Four sensor coasters arranged around a café table" loading="lazy" /></figure>
-            <span>02</span><h5>Sensing</h5>
-            <p>A DHT22 sensor reads the beverage temperature and sends it through Arduino.</p>
+            <div><span>II</span><h6>Sensing</h6><p>A DHT22 sensor reads the beverage temperature and sends it through Arduino.</p></div>
           </li>
           <li>
-            <figure><img src={`${CASE_ASSET}/seeing-hot-cold.jpg`} alt="Two different thermal signatures shown together" loading="lazy" /></figure>
-            <span>03</span><h5>Seeing</h5>
-            <p>TouchDesigner maps each stream to the scale, movement, and distortion of a circle.</p>
+            <figure><img src={`${CASE_ASSET}/thermal-signature.jpg`} alt="A thermal reading translated into a luminous visual signature" loading="lazy" /></figure>
+            <div><span>III</span><h6>Seeing</h6><p>TouchDesigner maps each stream to the scale, movement, and distortion of a circle.</p></div>
           </li>
           <li>
             <figure><img src={`${CASE_ASSET}/feeling.jpg`} alt="People connected through a shared projected visualization" loading="lazy" /></figure>
-            <span>04</span><h5>Feeling</h5>
-            <p>Circles meet, overlap, and separate, inviting people to notice one another.</p>
+            <div><span>IV</span><h6>Feeling</h6><p>Circles meet, overlap, and separate, inviting people to notice one another.</p></div>
           </li>
         </ol>
       </section>
