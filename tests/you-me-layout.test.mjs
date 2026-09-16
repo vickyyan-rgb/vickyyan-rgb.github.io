@@ -58,6 +58,56 @@ test('uses pure-black surfaces, scroll-reactive chapter headings, and still imag
   assert.match(css, /\.you-me-case-study figure:hover img[^}]*transform:\s*none/);
 });
 
+test('uses one five-level responsive typography hierarchy throughout the case study', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((match) => match[1]);
+  const stylesheets = await Promise.all(
+    stylesheetPaths.map(async (path) => {
+      const stylesheetResponse = await fetch(new URL(path, siteUrl));
+      assert.equal(stylesheetResponse.status, 200);
+      return stylesheetResponse.text();
+    }),
+  );
+  const css = stylesheets.join('\n');
+  const expectedLevels = [
+    'var(--case-xl)',
+    'var(--case-lg)',
+    'var(--case-md)',
+    'var(--case-sm)',
+    'var(--case-xs)',
+  ];
+
+  for (const [name, value] of [
+    ['--case-xl', 'clamp(64px,9vw,142px)'],
+    ['--case-lg', 'clamp(38px,4.1vw,64px)'],
+    ['--case-md', 'clamp(24px,2.8vw,42px)'],
+    ['--case-sm', 'clamp(15px,1.05vw,18px)'],
+    ['--case-xs', '12px'],
+  ]) {
+    assert.match(css, new RegExp(`${name}:\\s*${value.replace(/[().]/g, '\\$&')}`));
+  }
+
+  const caseStudyFontSizes = [...css.matchAll(/([^{}]*(?:case-study|you-me-case-study)[^{}]*)\{([^{}]*)\}/g)]
+    .flatMap(([, , declarations]) => [...declarations.matchAll(/font-size:\s*([^;}]+)/g)])
+    .map((match) => match[1].trim());
+  const uniqueFontSizes = [...new Set(caseStudyFontSizes)];
+
+  assert.deepEqual(uniqueFontSizes.sort(), expectedLevels.sort());
+  assert.ok(uniqueFontSizes.length <= 5);
+  assert.match(css, /\.case-study-scope>h3[^}]*font-size:\s*var\(--case-xl\)/);
+  assert.match(css, /\.case-study-manifesto>h4[^}]*font-size:\s*var\(--case-lg\)/);
+  assert.match(css, /\.case-study-process-header h4[^}]*font-size:\s*var\(--case-md\)/);
+  assert.match(css, /\.case-study-process-header p[^}]*font-size:\s*var\(--case-sm\)/);
+  assert.match(css, /\.case-study-scope-meta dt[^}]*font-size:\s*var\(--case-xs\)/);
+  assert.match(css, /#you-me-we-it>summary \.project-title[^}]*font-size:\s*var\(--case-md\)/);
+  assert.match(css, /#you-me-we-it>summary \.project-toggle[^}]*font-size:\s*var\(--case-sm\)/);
+  assert.match(css, /#you-me-we-it>summary :is\(\.project-number,\.project-field,\.project-year\)[^}]*font-size:\s*var\(--case-xs\)/);
+});
+
 test('presents the revised drawings, hover-reveal journey, and reordered motion studies', async () => {
   const response = await fetch(siteUrl);
   assert.equal(response.status, 200);
