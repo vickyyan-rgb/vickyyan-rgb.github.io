@@ -22,11 +22,6 @@ const motionStudies = [
     description: 'Closely aligned inputs settle into a single surrounding envelope, translating similarity into visual proximity.',
   },
   {
-    title: 'Second draft',
-    slug: 'second-draft',
-    description: 'A working TouchDesigner network routes four sensor channels into separate contours before recombining them as one responsive system.',
-  },
-  {
     title: 'Both hot',
     slug: 'both-hot',
     description: 'Two warm readings generate nested, expanding bodies that move with related rhythms while remaining individually legible.',
@@ -59,7 +54,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
           </header>
           <div className="case-study-scope-grid">
             <figure className="case-study-scope-sketch">
-              <img src={`${CASE_ASSET}/scope-installation-sketch.png`} alt="Hand-drawn proposal for the projected café installation" loading="lazy" />
+              <img src={`${CASE_ASSET}/scope-installation-sketch-v2.png`} alt="Hand-drawn proposal for the projected café installation" loading="lazy" />
             </figure>
             <dl className="case-study-scope-meta">
               <div className="case-study-scope-relevance">
@@ -89,7 +84,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
         </figure>
         <div className="case-study-problem-concept">
           <figure>
-            <img src={`${CASE_ASSET}/scope-social-distance.png`} alt="Diagram connecting tangible design, user experience, Café 059, and the Daniels social fabric" loading="lazy" />
+            <img src={`${CASE_ASSET}/scope-social-distance-v2.png`} alt="Diagram connecting tangible design, user experience, Café 059, and the Daniels social fabric" loading="lazy" />
           </figure>
           <p>The installation uses tangible design to manifest a conversation between space and interpersonal social distance.</p>
         </div>
@@ -106,27 +101,49 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
       <section className="case-study-design-logic" id="case-study-design-logic">
         <h4 className="case-study-scroll-heading">Design Logic</h4>
         <figure className="case-study-logic-diagram">
-          <img src={`${PROCESS_ASSET}/concept-sketches.jpg`} alt="Early concept sketch tracing a drink from placement through sensing to a shared visual response" loading="lazy" />
+          <img src={`${PROCESS_ASSET}/design-logic-v2.png`} alt="Storyboard tracing drink temperature into a shared projected social experience" loading="lazy" />
         </figure>
         <h5>From placing to feeling</h5>
         <ol>
-          <li>
+          <li className="case-study-reveal-card" tabIndex={0}>
             <figure><img src={`${CASE_ASSET}/placing.png`} alt="A hand placing a drink onto a coaster" loading="lazy" /></figure>
             <div><span>I</span><h6>Placing</h6><p>A participant sets a drink on one of four custom coasters.</p></div>
           </li>
-          <li>
+          <li className="case-study-reveal-card" tabIndex={0}>
             <figure><img src={`${CASE_ASSET}/sensing.png`} alt="Four sensor coasters arranged around a café table" loading="lazy" /></figure>
             <div><span>II</span><h6>Sensing</h6><p>A DHT22 sensor reads the beverage temperature and sends it through Arduino.</p></div>
           </li>
-          <li>
+          <li className="case-study-reveal-card" tabIndex={0}>
             <figure><img src={`${CASE_ASSET}/thermal-signature.jpg`} alt="A thermal reading translated into a luminous visual signature" loading="lazy" /></figure>
             <div><span>III</span><h6>Seeing</h6><p>TouchDesigner maps each stream to the scale, movement, and distortion of a circle.</p></div>
           </li>
-          <li>
+          <li className="case-study-reveal-card" tabIndex={0}>
             <figure><img src={`${CASE_ASSET}/feeling.jpg`} alt="People connected through a shared projected visualization" loading="lazy" /></figure>
             <div><span>IV</span><h6>Feeling</h6><p>Circles meet, overlap, and separate, inviting people to notice one another.</p></div>
           </li>
         </ol>
+      </section>
+
+      <section className="case-study-motion-studies">
+        <header className="case-study-process-header">
+          <h4>Behaviour was tuned through small visual experiments.</h4>
+          <p>Each study isolates a relationship between readings—contrast, similarity, overlap, or separation—before those rules are combined in the final projected system.</p>
+        </header>
+        <div className="case-study-motion-grid">
+          {motionStudies.map((study, index) => (
+            <figure key={study.slug}>
+              <ProcessLoop
+                src={`${PROCESS_ASSET}/${study.slug}.mp4`}
+                poster={`${PROCESS_ASSET}/${study.slug}-poster.jpg`}
+                title={study.title}
+              />
+              <figcaption>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div><h5>{study.title}</h5><p>{study.description}</p></div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className="case-study-build" id="case-study-prototype">
@@ -170,28 +187,6 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
             <img src={`${PROCESS_ASSET}/arduino-tinkercad.png`} alt="Arduino Uno wired to four temperature sensors on a breadboard" loading="lazy" />
             <figcaption><span>Four-channel circuit</span><p>Each temperature sensor uses its own signal path while sharing power and ground, allowing simultaneous readings to drive the projection.</p></figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section className="case-study-motion-studies">
-        <header className="case-study-process-header">
-          <h4>Behaviour was tuned through small visual experiments.</h4>
-          <p>Each study isolates a relationship between readings—contrast, similarity, overlap, or separation—before those rules are combined in the final projected system.</p>
-        </header>
-        <div className="case-study-motion-grid">
-          {motionStudies.map((study, index) => (
-            <figure className={index === 2 ? 'case-study-motion-wide' : ''} key={study.slug}>
-              <ProcessLoop
-                src={`${PROCESS_ASSET}/${study.slug}.mp4`}
-                poster={`${PROCESS_ASSET}/${study.slug}-poster.jpg`}
-                title={study.title}
-              />
-              <figcaption>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <div><h5>{study.title}</h5><p>{study.description}</p></div>
-              </figcaption>
-            </figure>
-          ))}
         </div>
       </section>
 
