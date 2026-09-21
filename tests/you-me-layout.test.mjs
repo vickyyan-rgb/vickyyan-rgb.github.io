@@ -208,6 +208,44 @@ test('presents the revised drawings, hover-reveal journey, and reordered motion 
   assert.match(css, /\.you-me-case-study \.case-study-logic-diagram img[^}]*filter:\s*none/);
 });
 
+test('removes the concept sketch and crops the four technical drawings away from their captions', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.doesNotMatch(html, /process\/concept-sketches\.jpg/);
+  assert.doesNotMatch(html, />Concept direction</);
+
+  const drawingCrops = [
+    ['table-elevation.jpg', 'elevation'],
+    ['sensor-layout.jpg', 'sensor'],
+    ['table-assembly.jpg', 'assembly'],
+    ['arduino-tinkercad.png', 'circuit'],
+  ];
+  for (const [asset, cropClass] of drawingCrops) {
+    assert.match(
+      html,
+      new RegExp(`case-study-drawing-crop case-study-drawing-crop--${cropClass}[\\s\\S]*?${asset}`),
+      `expected ${asset} inside its crop frame`,
+    );
+  }
+
+  const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((match) => match[1]);
+  const css = (await Promise.all(stylesheetPaths.map(async (path) => {
+    const stylesheetResponse = await fetch(new URL(path, siteUrl));
+    assert.equal(stylesheetResponse.status, 200);
+    return stylesheetResponse.text();
+  }))).join('\n');
+
+  assert.match(css, /\.case-study-drawing-crop\s*\{[^}]*overflow:\s*hidden/);
+  assert.match(css, /\.case-study-drawing-grid figcaption\s*\{[^}]*padding-top:\s*clamp\(20px,2vw,30px\)/);
+  assert.match(css, /\.case-study-drawing-crop--sensor\s*\{[^}]*aspect-ratio:\s*1684\/1191/);
+  for (const [, cropClass] of drawingCrops) {
+    assert.match(css, new RegExp(`\\.case-study-drawing-crop--${cropClass}\\s*\\{`));
+  }
+});
+
 test('uses the revised opening story and centers the motion-study introduction', async () => {
   const response = await fetch(siteUrl);
   assert.equal(response.status, 200);

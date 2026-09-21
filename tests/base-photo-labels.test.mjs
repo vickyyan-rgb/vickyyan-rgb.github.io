@@ -22,6 +22,7 @@ test('renders project hotspot labels at the Interactive Study size with a white 
 
   assert.match(css, /\.base-hotspot-title\s*\{[^}]*font-family:\s*var\(--font-inter\)/);
   assert.match(css, /\.base-hotspot-title\s*\{[^}]*font-size:\s*clamp\(12px,1\.5vw,23px\)/);
+  assert.match(css, /\.base-hotspot-title\s*\{[^}]*color:\s*transparent/);
   assert.match(css, /\.base-hotspot-title\s*\{[^}]*-webkit-text-stroke:\s*[^;]*#fff/);
   assert.match(css, /@keyframes hotspot-title-in\s*\{[^}]*\}[^}]*scale\(1\.12\)/);
 });

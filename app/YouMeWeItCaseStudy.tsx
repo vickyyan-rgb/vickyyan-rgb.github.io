@@ -188,24 +188,28 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
           <p>Concept sketches moved from abstract ideas of collective light toward a site-specific café ritual. Technical drawings then coordinated the table, sensor reach, cable paths, electronics enclosure, and circular layers of each coaster.</p>
         </header>
         <div className="case-study-drawing-grid">
-          <figure className="case-study-drawing-concept">
-            <img src={`${PROCESS_ASSET}/concept-sketches.jpg`} alt="Early sketches connecting communal light, drink temperature, and Café 059" loading="lazy" />
-            <figcaption><span>Concept direction</span><p>Participation shifted from a large communal gesture to the familiar act of setting down a drink.</p></figcaption>
-          </figure>
           <figure>
-            <img src={`${PROCESS_ASSET}/table-elevation.jpg`} alt="Elevation drawing of the café table, coasters, and electronics enclosure" loading="lazy" />
+            <div className="case-study-drawing-crop case-study-drawing-crop--elevation">
+              <img src={`${PROCESS_ASSET}/table-elevation.jpg`} alt="Elevation drawing of the café table, coasters, and electronics enclosure" loading="lazy" />
+            </div>
             <figcaption><span>Table elevation</span><p>The hardware sits at the centre while four coasters keep the interaction distributed and social.</p></figcaption>
           </figure>
           <figure>
-            <img src={`${PROCESS_ASSET}/sensor-layout.jpg`} alt="Plan drawing showing four sensor stations connected to the central controller" loading="lazy" />
+            <div className="case-study-drawing-crop case-study-drawing-crop--sensor">
+              <img src={`${PROCESS_ASSET}/sensor-layout.jpg`} alt="Plan drawing showing four sensor stations connected to the central controller" loading="lazy" />
+            </div>
             <figcaption><span>Sensor layout</span><p>Four sensing points feed a single controller, creating one shared visual field from multiple individual inputs.</p></figcaption>
           </figure>
           <figure>
-            <img src={`${PROCESS_ASSET}/table-assembly.jpg`} alt="Exploded drawing of the circular table and integrated electronics" loading="lazy" />
+            <div className="case-study-drawing-crop case-study-drawing-crop--assembly">
+              <img src={`${PROCESS_ASSET}/table-assembly.jpg`} alt="Exploded drawing of the circular table and integrated electronics" loading="lazy" />
+            </div>
             <figcaption><span>Integrated assembly</span><p>Layered circular components conceal the electronics while preserving access for testing and repair.</p></figcaption>
           </figure>
           <figure className="case-study-circuit">
-            <img src={`${PROCESS_ASSET}/arduino-tinkercad.png`} alt="Arduino Uno wired to four temperature sensors on a breadboard" loading="lazy" />
+            <div className="case-study-drawing-crop case-study-drawing-crop--circuit">
+              <img src={`${PROCESS_ASSET}/arduino-tinkercad.png`} alt="Arduino Uno wired to four temperature sensors on a breadboard" loading="lazy" />
+            </div>
             <figcaption><span>Four-channel circuit</span><p>Each temperature sensor uses its own signal path while sharing power and ground, allowing simultaneous readings to drive the projection.</p></figcaption>
           </figure>
         </div>

@@ -213,12 +213,18 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .case-study-process-header h4 { grid-column:2; max-width:760px; margin:0; font-size:var(--case-md); line-height:1.08; font-weight:500; letter-spacing:-.035em; }
 .case-study-process-header p { grid-column:2; max-width:680px; margin:10px 0 0; color:#c3c3c3; font-size:var(--case-sm); line-height:1.6; }
 .case-study-drawing-grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(28px,4vw,64px) clamp(16px,2vw,30px); }
-.case-study-drawing-grid figure { grid-column:span 6; overflow:visible; }
-.case-study-drawing-grid .case-study-drawing-concept { grid-column:1/-1; }
-.case-study-drawing-grid figure>img { display:block; width:100%; aspect-ratio:1.414/1; object-fit:contain; background:#f4f4f4; }
-.case-study-drawing-grid .case-study-drawing-concept>img { aspect-ratio:16/9; }
-.case-study-drawing-grid .case-study-circuit>img { aspect-ratio:16/9; padding:clamp(12px,2vw,28px); }
-.case-study-drawing-grid figcaption { display:grid; grid-template-columns:minmax(110px,.35fr) 1fr; gap:18px; padding-top:16px; }
+.case-study-drawing-grid figure { grid-column:span 6; overflow:hidden; }
+.case-study-drawing-crop { position:relative; width:100%; overflow:hidden; background:#f4f4f4; }
+.you-me-case-study .case-study-drawing-crop>img { position:absolute; display:block; max-width:none; transform:none!important; }
+.case-study-drawing-crop--elevation { aspect-ratio:1150/520; }
+.you-me-case-study .case-study-drawing-crop--elevation>img { width:146.44%; height:229.04%; left:-28.7%; top:-98.08%; }
+.case-study-drawing-crop--sensor { aspect-ratio:1684/1191; }
+.you-me-case-study .case-study-drawing-crop--sensor>img { inset:0; width:100%; height:100%; object-fit:cover; }
+.case-study-drawing-crop--assembly { width:min(52%,460px); margin-inline:auto; aspect-ratio:480/1060; }
+.you-me-case-study .case-study-drawing-crop--assembly>img { width:350.83%; height:112.36%; left:-125%; top:-5.66%; }
+.case-study-drawing-crop--circuit { aspect-ratio:16/9; }
+.you-me-case-study .case-study-drawing-crop--circuit>img { inset:0; width:100%; height:100%; object-fit:cover; }
+.case-study-drawing-grid figcaption { display:grid; grid-template-columns:minmax(110px,.35fr) 1fr; gap:18px; padding-top:clamp(20px,2vw,30px); }
 .case-study-drawing-grid figcaption>span { color:#aaa; font-size:var(--case-xs); line-height:1.4; text-transform:uppercase; letter-spacing:.12em; }
 .case-study-drawing-grid figcaption p { margin:0; color:#c3c3c3; font-size:var(--case-sm); line-height:1.55; }
 .case-study-motion-studies { padding-top:clamp(30px,5vw,70px); }
@@ -465,7 +471,7 @@ nav div { display:flex; gap:34px; }nav div a:hover { opacity:.45; }
 .base-copy p { position:absolute; left:50%; top:50%; margin:0; transform:translate(-50%,-50%); font-size:clamp(12px,1.5vw,23px); text-transform:uppercase; letter-spacing:.14em; white-space:nowrap; pointer-events:auto; animation:study-title-in .65s .08s both cubic-bezier(.2,.8,.2,1); }
 .base-copy p span { display:block; transition:transform .28s cubic-bezier(.2,.8,.2,1); }
 .base-copy p:hover span { transform:scale(1.08); }
-.base-hotspot-title { position:absolute; z-index:4; margin:0; transform:translate(-50%,-50%) scale(1.12); pointer-events:none; color:#111; font-family:var(--font-inter),Arial,sans-serif; font-size:clamp(12px,1.5vw,23px); font-weight:600; line-height:.95; letter-spacing:-.025em; text-align:center; white-space:nowrap; -webkit-text-stroke:clamp(1px,.1vw,1.6px) #fff; paint-order:stroke fill; animation:hotspot-title-in .34s both cubic-bezier(.2,.8,.2,1); }
+.base-hotspot-title { position:absolute; z-index:4; margin:0; transform:translate(-50%,-50%) scale(1.12); pointer-events:none; color:transparent; font-family:var(--font-inter),Arial,sans-serif; font-size:clamp(12px,1.5vw,23px); font-weight:600; line-height:.95; letter-spacing:-.025em; text-align:center; white-space:nowrap; -webkit-text-stroke:clamp(1px,.1vw,1.6px) #fff; paint-order:stroke fill; animation:hotspot-title-in .34s both cubic-bezier(.2,.8,.2,1); }
 .base-experience.is-instant .base-photo-layer,
 .base-experience.is-instant .base-white-veil::before,
 .base-experience.is-instant nav,
