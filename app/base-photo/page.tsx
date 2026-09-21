@@ -2,8 +2,7 @@
 
 import { useLayoutEffect, useState, type MouseEvent } from 'react';
 import { useDynamicReveal } from '../useDynamicReveal';
-
-type ProjectSlug = 'you-me-we-it' | 'embodied-cognition' | 'sketch-a-home' | 'block-sketch' | 'block';
+import { titlePositionForProject, type ProjectSlug } from './hotspotGeometry';
 
 const PROJECT_TITLES: Record<ProjectSlug, string> = {
   'you-me-we-it': 'You / Me / We / It',
@@ -63,25 +62,6 @@ export default function BasePhotoPage() {
     )?.project ?? null;
   };
 
-  const titlePositionForProject = (element: HTMLElement, project: ProjectSlug) => {
-    const rect = element.getBoundingClientRect();
-
-    if (project === 'embodied-cognition') return { left: rect.width * 0.75, top: rect.height * 0.25 };
-    if (project === 'sketch-a-home') return { left: rect.width / 6, top: rect.height * 0.75 };
-    if (project === 'block-sketch') return { left: rect.width * 0.5, top: rect.height * 0.75 };
-    if (project === 'block') return { left: rect.width * (5 / 6), top: rect.height * 0.75 };
-
-    const sourceWidth = 2702;
-    const sourceHeight = 1698;
-    const scale = Math.max(rect.width / sourceWidth, rect.height / sourceHeight);
-    const offsetX = (rect.width - sourceWidth * scale) / 2;
-    const offsetY = (rect.height - sourceHeight * scale) / 2;
-    return {
-      left: offsetX + 635 * scale,
-      top: offsetY + 415 * scale,
-    };
-  };
-
   const openProjectHotspot = (event: MouseEvent<HTMLElement>) => {
     if ((event.target as HTMLElement).closest('a')) return;
 
@@ -95,7 +75,7 @@ export default function BasePhotoPage() {
       onClick={openProjectHotspot}
       onPointerMove={(event) => {
         const project = projectAtPoint(event.currentTarget, event.clientX, event.clientY);
-        const titlePosition = project ? titlePositionForProject(event.currentTarget, project) : null;
+        const titlePosition = project ? titlePositionForProject(event.currentTarget.getBoundingClientRect(), project) : null;
         reveal(event.clientX, event.clientY, project ? 1.75 : 1);
         setHotspotTitle((current) => {
           if (!project || !titlePosition) return current ? null : current;

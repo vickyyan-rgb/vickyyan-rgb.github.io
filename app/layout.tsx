@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Caveat, Inter } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
   variable: '--font-inter',
+  subsets: ['latin'],
+});
+
+const caveat = Caveat({
+  variable: '--font-hand',
   subsets: ['latin'],
 });
 
@@ -32,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.variable} ${caveat.variable} antialiased`}
       >
         {children}
       </body>
