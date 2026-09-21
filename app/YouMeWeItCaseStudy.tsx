@@ -9,6 +9,7 @@ type YouMeWeItCaseStudyProps = {
 const CASE_ASSET = '/projects/you-me-case-study';
 const PROCESS_ASSET = `${CASE_ASSET}/process`;
 const FINAL_ASSET = `${CASE_ASSET}/final`;
+const FABRICATION_ASSET = `${CASE_ASSET}/fabrication`;
 
 const motionStudies = [
   {
@@ -159,7 +160,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
 
       <section className="case-study-build" id="case-study-prototype">
         <div className="case-study-copy">
-          <h4>Physical Fabrication</h4>
+          <h4>Technical Application</h4>
           <p>Early prototypes linked four temperature inputs to light before the full projection system was built. Repeated tests stabilized the sensor readings, while custom coaster housings turned exposed electronics into a shared tabletop interface.</p>
           <p className="case-study-tools">Arduino · DHT22 · TouchDesigner · Projection · Digital fabrication</p>
         </div>
@@ -180,6 +181,57 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
             <ProjectVideo key={iteration.src} src={iteration.src} title={iteration.title} autoPlay />
           ))}
         </div>
+      </section>
+
+      <section className="case-study-fabrication-chapter" aria-labelledby="case-study-fabrication-title">
+        <header className="case-study-fabrication-header">
+          <h4 id="case-study-fabrication-title">Fabrication</h4>
+          <p>The system moved from loose electronics into a physical tabletop assembly. Full-scale prototypes coordinated the sensor coasters, wiring, central controller, and tea display as one portable interaction.</p>
+        </header>
+
+        <div className="case-study-fabrication-gallery">
+          <figure className="case-study-fabrication-hero">
+            <img src={`${FABRICATION_ASSET}/fabrication-hero.jpg`} alt="Rear view of the assembled tea display, sensor coasters, Arduino, and breadboard" loading="lazy" />
+          </figure>
+          <figure><img src={`${FABRICATION_ASSET}/fabrication-front.jpg`} alt="Front view of the fabricated tea display and three sensor coasters" loading="lazy" /></figure>
+          <figure><img src={`${FABRICATION_ASSET}/fabrication-angle.jpg`} alt="Angled view of the slotted tea display prototype" loading="lazy" /></figure>
+          <figure><img src={`${FABRICATION_ASSET}/fabrication-profile.jpg`} alt="Profile view showing the folded structure and tea compartments" loading="lazy" /></figure>
+          <figure><img src={`${FABRICATION_ASSET}/fabrication-rear.jpg`} alt="Rear three-quarter view of the layered cardboard assembly" loading="lazy" /></figure>
+        </div>
+
+        <section className="case-study-material-study" aria-labelledby="case-study-material-title">
+          <header>
+            <span>Material Testing</span>
+            <h5 id="case-study-material-title">Plywood + aluminum foil versus acrylic</h5>
+            <p>Two coaster constructions tested how the sensor could meet the drink while keeping the electronics protected, repeatable, and visually quiet.</p>
+          </header>
+          <div className="case-study-material-comparison">
+            <article>
+              <div className="case-study-material-copy">
+                <span>01</span>
+                <h6>Plywood + Aluminum Foil</h6>
+                <p>Layered plywood formed a rigid circular frame, while aluminum foil created a broad contact surface above the sensor. The open construction made the material and assembly logic easy to inspect and revise.</p>
+              </div>
+              <div className="case-study-material-images">
+                <figure><img src={`${FABRICATION_ASSET}/plywood-foil-assembled.jpg`} alt="Assembled plywood coaster with an aluminum foil sensing surface" loading="lazy" /></figure>
+                <figure><img src={`${FABRICATION_ASSET}/plywood-foil-open.jpg`} alt="Plywood coaster opened to reveal its aluminum foil layer" loading="lazy" /></figure>
+                <figure><img src={`${FABRICATION_ASSET}/plywood-foil-components.jpg`} alt="Separated plywood rings, base, and aluminum foil sensing component" loading="lazy" /></figure>
+              </div>
+            </article>
+            <article>
+              <div className="case-study-material-copy">
+                <span>02</span>
+                <h6>Acrylic</h6>
+                <p>Laser-cut acrylic produced a thinner, repeatable housing around the sensor. The translucent layered body concealed the assembly more softly and gave the coaster a lighter presence beside the projection.</p>
+              </div>
+              <div className="case-study-material-images">
+                <figure><img src={`${FABRICATION_ASSET}/acrylic-installation.jpg`} alt="Acrylic sensor coaster connected to the tea display" loading="lazy" /></figure>
+                <figure><img src={`${FABRICATION_ASSET}/acrylic-sensor-test.jpg`} alt="Temperature sensor fitted into a circular acrylic coaster" loading="lazy" /></figure>
+                <figure><img src={`${FABRICATION_ASSET}/acrylic-laser-test.jpg`} alt="Acrylic coaster components tested on a laser cutter bed" loading="lazy" /></figure>
+              </div>
+            </article>
+          </div>
+        </section>
       </section>
 
       <section className="case-study-process-docs">

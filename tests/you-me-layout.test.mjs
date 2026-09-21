@@ -16,7 +16,7 @@ test('presents the PDF-inspired case-study story before the prototype chapter', 
     'Reveal something that is felt but not seen.',
     'Design Logic',
     'From placing to feeling',
-    'Physical Fabrication',
+    'Technical Application',
   ];
 
   const positions = storyBeats.map((beat) => html.indexOf(beat));
@@ -268,29 +268,33 @@ test('uses the revised opening story and centers the motion-study introduction',
   assert.match(css, /\.case-study-motion-studies \.case-study-process-header p[^}]*margin-inline:\s*auto/);
 });
 
-test('presents prototypes as aligned fabrication and digital iteration sequences', async () => {
+test('presents technical application, digital iterations, and fabrication in sequence', async () => {
   const response = await fetch(siteUrl);
   assert.equal(response.status, 200);
   const html = await response.text();
 
   const designLogicPosition = html.indexOf('Design Logic');
   const prototypesPosition = html.indexOf('>Prototypes<');
-  const fabricationPosition = html.indexOf('>Physical Fabrication<');
+  const technicalPosition = html.indexOf('>Technical Application<');
   const digitalPosition = html.indexOf('>Digital Iterations<');
+  const fabricationPosition = html.indexOf('>Fabrication<');
+  const materialPosition = html.indexOf('>Material Testing<');
   assert.ok(designLogicPosition < prototypesPosition);
-  assert.ok(prototypesPosition < fabricationPosition);
-  assert.ok(fabricationPosition < digitalPosition);
+  assert.ok(prototypesPosition < technicalPosition);
+  assert.ok(technicalPosition < digitalPosition);
+  assert.ok(digitalPosition < fabricationPosition);
+  assert.ok(fabricationPosition < materialPosition);
 
-  const fabricationAssets = [
+  const technicalAssets = [
     '/projects/you-me-case-study/prototype.jpg',
     '/projects/you-me-case-study/sensor-hardware.jpg',
     '/projects/you-me-case-study/arduino-diagram.png',
     '/projects/you-me-case-study/fabrication-demonstration.mp4',
   ];
-  const fabricationPositions = fabricationAssets.map((asset) => html.indexOf(asset));
-  fabricationPositions.forEach((position, index) => {
-    assert.notEqual(position, -1, `missing fabrication asset: ${fabricationAssets[index]}`);
-    if (index > 0) assert.ok(fabricationPositions[index - 1] < position);
+  const technicalPositions = technicalAssets.map((asset) => html.indexOf(asset));
+  technicalPositions.forEach((position, index) => {
+    assert.notEqual(position, -1, `missing technical asset: ${technicalAssets[index]}`);
+    if (index > 0) assert.ok(technicalPositions[index - 1] < position);
   });
   assert.doesNotMatch(html, /coaster-prototype-[12]\.jpg/);
 
@@ -306,6 +310,34 @@ test('presents prototypes as aligned fabrication and digital iteration sequences
     if (index > 0) assert.ok(iterationPositions[index - 1] < position);
   });
 
+  const fabricationAssets = [
+    '/projects/you-me-case-study/fabrication/fabrication-hero.jpg',
+    '/projects/you-me-case-study/fabrication/fabrication-front.jpg',
+    '/projects/you-me-case-study/fabrication/fabrication-angle.jpg',
+    '/projects/you-me-case-study/fabrication/fabrication-profile.jpg',
+    '/projects/you-me-case-study/fabrication/fabrication-rear.jpg',
+  ];
+  const plywoodAssets = [
+    '/projects/you-me-case-study/fabrication/plywood-foil-assembled.jpg',
+    '/projects/you-me-case-study/fabrication/plywood-foil-open.jpg',
+    '/projects/you-me-case-study/fabrication/plywood-foil-components.jpg',
+  ];
+  const acrylicAssets = [
+    '/projects/you-me-case-study/fabrication/acrylic-installation.jpg',
+    '/projects/you-me-case-study/fabrication/acrylic-sensor-test.jpg',
+    '/projects/you-me-case-study/fabrication/acrylic-laser-test.jpg',
+  ];
+  const newAssets = [...fabricationAssets, ...plywoodAssets, ...acrylicAssets];
+  const newAssetPositions = newAssets.map((asset) => html.indexOf(asset));
+  newAssetPositions.forEach((position, index) => {
+    assert.notEqual(position, -1, `missing fabrication chapter asset: ${newAssets[index]}`);
+    if (index > 0) assert.ok(newAssetPositions[index - 1] < position);
+  });
+  for (const asset of newAssets) {
+    const assetResponse = await fetch(new URL(asset, siteUrl));
+    assert.equal(assetResponse.status, 200, `fabrication asset is not served: ${asset}`);
+  }
+
   const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
     .map((match) => match[1]);
   const css = (await Promise.all(stylesheetPaths.map(async (path) => {
@@ -316,4 +348,7 @@ test('presents prototypes as aligned fabrication and digital iteration sequences
   assert.match(css, /\.case-study-prototypes>h3[^}]*font-size:\s*var\(--case-xl\)/);
   assert.match(css, /\.case-study-fabrication-media[^}]*grid-template-columns:\s*1fr/);
   assert.match(css, /\.case-study-digital-media[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /\.case-study-fabrication-gallery\s*\{[^}]*grid-template-columns:\s*repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.case-study-fabrication-hero\s*\{[^}]*grid-column:\s*1\/-1/);
+  assert.match(css, /\.case-study-material-comparison\s*\{[^}]*grid-template-columns:\s*repeat\(2,minmax\(0,1fr\)\)/);
 });
