@@ -41,10 +41,11 @@ export default function ProcessLoop({ src, poster, title }: ProcessLoopProps) {
     >
       <video
         ref={videoRef}
+        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         poster={poster}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}

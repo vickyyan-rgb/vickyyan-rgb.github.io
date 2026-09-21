@@ -58,6 +58,7 @@ export default function ProjectVideo({ src, title, autoPlay = false }: ProjectVi
         ref={videoRef}
         playsInline
         autoPlay={autoPlay}
+        loop={autoPlay}
         muted={muted}
         preload={autoPlay ? 'auto' : 'metadata'}
         aria-label={`${title} project video`}

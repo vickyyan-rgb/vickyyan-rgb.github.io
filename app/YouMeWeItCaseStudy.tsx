@@ -167,7 +167,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
           <figure><img src={`${CASE_ASSET}/prototype.jpg`} alt="Early temperature and light prototype on a workbench" loading="lazy" /></figure>
           <figure><img src={`${CASE_ASSET}/sensor-hardware.jpg`} alt="Arduino and four physical sensor coasters" loading="lazy" /></figure>
           <figure><img src={`${CASE_ASSET}/arduino-diagram.png`} alt="Arduino wiring diagram for four temperature sensors" loading="lazy" /></figure>
-          <ProjectVideo src={`${CASE_ASSET}/fabrication-demonstration.mp4`} title="Physical fabrication demonstration" />
+          <ProjectVideo src={`${CASE_ASSET}/fabrication-demonstration.mp4`} title="Physical fabrication demonstration" autoPlay />
         </div>
       </section>
 
@@ -177,7 +177,7 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
         </header>
         <div className="case-study-digital-media">
           {digitalIterations.map((iteration) => (
-            <ProjectVideo key={iteration.src} src={iteration.src} title={iteration.title} />
+            <ProjectVideo key={iteration.src} src={iteration.src} title={iteration.title} autoPlay />
           ))}
         </div>
       </section>

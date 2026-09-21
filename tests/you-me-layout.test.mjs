@@ -82,8 +82,8 @@ test('uses one five-level responsive typography hierarchy throughout the case st
   ];
 
   for (const [name, value] of [
-    ['--case-xl', 'clamp(64px,9vw,142px)'],
-    ['--case-lg', 'clamp(38px,4.1vw,64px)'],
+    ['--case-xl', 'clamp(51.2px,7.2vw,113.6px)'],
+    ['--case-lg', 'clamp(30.4px,3.28vw,51.2px)'],
     ['--case-md', 'clamp(24px,2.8vw,42px)'],
     ['--case-sm', 'clamp(15px,1.05vw,18px)'],
     ['--case-xs', '12px'],
@@ -106,6 +106,52 @@ test('uses one five-level responsive typography hierarchy throughout the case st
   assert.match(css, /#you-me-we-it>summary \.project-title[^}]*font-size:\s*var\(--case-md\)/);
   assert.match(css, /#you-me-we-it>summary \.project-toggle[^}]*font-size:\s*var\(--case-sm\)/);
   assert.match(css, /#you-me-we-it>summary :is\(\.project-number,\.project-field,\.project-year\)[^}]*font-size:\s*var\(--case-xs\)/);
+});
+
+test('centers every case-study image and video at half width while preserving mobile readability', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  const caseStudyHtml = html.match(/<details class="project" id="you-me-we-it">([\s\S]*?)<details class="project" id="embodied-cognition">/)?.[1];
+  assert.ok(caseStudyHtml, 'expected the You / Me / We / It case study to render');
+  const autoplayVideos = [...caseStudyHtml.matchAll(/<video[^>]*autoplay/gi)];
+  assert.equal(autoplayVideos.length, 10, 'every You / Me / We / It video should autoplay');
+
+  const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((match) => match[1]);
+  const css = (await Promise.all(stylesheetPaths.map(async (path) => {
+    const stylesheetResponse = await fetch(new URL(path, siteUrl));
+    assert.equal(stylesheetResponse.status, 200);
+    return stylesheetResponse.text();
+  }))).join('\n');
+
+  assert.match(css, /\.you-me-case-study\s*\{[^}]*--case-media-width:\s*50%/);
+  assert.match(css, /\.you-me-case-study>\.project-video[^}]*width:\s*var\(--case-media-width\)[^}]*margin-inline:\s*auto/);
+  assert.match(css, /\.you-me-case-study \.case-study-opening-image[^}]*width:\s*var\(--case-media-width\)[^}]*margin-inline:\s*auto/);
+  assert.match(css, /\.you-me-case-study :is\([^}]*\.case-study-motion-grid[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /\.you-me-case-study :is\([^}]*\.case-study-installation-grid[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /@media\s*\(max-width:700px\)[\s\S]*\.you-me-case-study\s*\{[^}]*--case-media-width:\s*100%/);
+});
+
+test('removes the approach label and presents the remaining statement as small centered text', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.doesNotMatch(html, />Approach</);
+  assert.match(html, /I listen closely, reduce noise, and design from the human out\./);
+
+  const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((match) => match[1]);
+  const css = (await Promise.all(stylesheetPaths.map(async (path) => {
+    const stylesheetResponse = await fetch(new URL(path, siteUrl));
+    assert.equal(stylesheetResponse.status, 200);
+    return stylesheetResponse.text();
+  }))).join('\n');
+
+  assert.match(css, /\.about-preview\s*\{[^}]*justify-content:\s*center/);
+  assert.match(css, /\.about-preview p\s*\{[^}]*font-size:\s*16px[^}]*text-align:\s*center/);
 });
 
 test('presents the revised drawings, hover-reveal journey, and reordered motion studies', async () => {

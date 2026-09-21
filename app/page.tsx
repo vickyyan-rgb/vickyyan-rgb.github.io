@@ -229,7 +229,6 @@ export default function Home() {
         </section>
 
         <section className="about-preview" id="about">
-          <span>Approach</span>
           <p>I listen closely, reduce noise, and design from the human out.</p>
         </section>
 
