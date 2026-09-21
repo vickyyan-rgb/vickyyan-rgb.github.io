@@ -33,13 +33,20 @@ const motionStudies = [
   },
 ];
 
+const digitalIterations = [
+  { title: 'Digital iteration — September 30', src: `${CASE_ASSET}/digital-iterations/recording-2025-09-30.mp4` },
+  { title: 'First draft', src: `${CASE_ASSET}/digital-iterations/first-draft.mp4` },
+  { title: 'Second draft', src: `${CASE_ASSET}/digital-iterations/second-draft.mp4` },
+  { title: 'Digital iteration — October 1', src: `${CASE_ASSET}/digital-iterations/recording-2025-10-01.mp4` },
+];
+
 export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
   return (
     <div className="project-body you-me-case-study">
       <section className="case-study-opening" aria-label="You / Me / We / It opening">
         <div className="case-study-opening-image" role="img" aria-label="Luminous thermal circles from the You / Me / We / It installation" />
         <blockquote>
-          <p>Our You / Me / We / It is sited within Café 059, a once-vital hub now silent. The installation aims to reactivate the space through inheriting their original subject matter, beverages as the input devise to translate into visualizations that reflects “social warmth”. Each circle breathes and distorts to the thermal rhythm of a participant&apos;s drink, directly translating temperature data into a fluid, visual form. Custom-made coasters with embedded sensors record the live temperature; as participants place their drinks, their individual thermal signature is added to the collective chorus. The installation invites participants to be curious and follow their circle, seeing its encounters and comparing to its Neighbours. The visuals sends messages: when two drinks share a temperature, their circles align and blend into a unified hue, forming a connective geometry. This dynamic visualization serves as a metaphor for the social “temperature” and distance of the Daniels social fabric, using the tangible residue of interaction to create a live, data-driven portrait of the space&apos;s lost vitality, literally projecting energy back into the empty room.</p>
+          <p>Our You / Me / We / It is sited within Café 059, a once-vital hub now silent. The installation aims to reactivate the space through inheriting their original subject matter, beverages as the input devise to translate into visualizations that reflects “social warmth”. The installation invites participants to be curious and follow their circle, seeing its encounters and comparing to its Neighbours. The visuals sends messages: when two drinks share a temperature, their circles align and blend into a unified hue, forming a connective geometry. This dynamic visualization serves as a metaphor for the social “temperature” and distance of the Daniels social fabric, using the tangible residue of interaction to create a live, data-driven portrait of the space&apos;s lost vitality, literally projecting energy back into the empty room.</p>
         </blockquote>
       </section>
 
@@ -146,18 +153,32 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
         </div>
       </section>
 
+      <section className="case-study-prototypes" aria-labelledby="case-study-prototypes-title">
+        <h3 className="case-study-scroll-heading" id="case-study-prototypes-title">Prototypes</h3>
+      </section>
+
       <section className="case-study-build" id="case-study-prototype">
         <div className="case-study-copy">
-          <h4>Turning temperature into a reliable interaction.</h4>
+          <h4>Physical Fabrication</h4>
           <p>Early prototypes linked four temperature inputs to light before the full projection system was built. Repeated tests stabilized the sensor readings, while custom coaster housings turned exposed electronics into a shared tabletop interface.</p>
           <p className="case-study-tools">Arduino · DHT22 · TouchDesigner · Projection · Digital fabrication</p>
         </div>
-        <div className="case-study-build-grid">
-          <figure className="case-study-build-wide"><img src={`${CASE_ASSET}/prototype.jpg`} alt="Early temperature and light prototype on a workbench" loading="lazy" /></figure>
-          <figure><img src={`${CASE_ASSET}/arduino-diagram.png`} alt="Arduino wiring diagram for four temperature sensors" loading="lazy" /></figure>
+        <div className="case-study-fabrication-media">
+          <figure><img src={`${CASE_ASSET}/prototype.jpg`} alt="Early temperature and light prototype on a workbench" loading="lazy" /></figure>
           <figure><img src={`${CASE_ASSET}/sensor-hardware.jpg`} alt="Arduino and four physical sensor coasters" loading="lazy" /></figure>
-          <figure><img src={`${CASE_ASSET}/coaster-prototype-1.jpg`} alt="Disassembled circular coaster prototype" loading="lazy" /></figure>
-          <figure><img src={`${CASE_ASSET}/coaster-prototype-2.jpg`} alt="Assembled circular coaster prototype" loading="lazy" /></figure>
+          <figure><img src={`${CASE_ASSET}/arduino-diagram.png`} alt="Arduino wiring diagram for four temperature sensors" loading="lazy" /></figure>
+          <ProjectVideo src={`${CASE_ASSET}/fabrication-demonstration.mp4`} title="Physical fabrication demonstration" />
+        </div>
+      </section>
+
+      <section className="case-study-digital-iterations" aria-labelledby="digital-iterations-title">
+        <header>
+          <h4 id="digital-iterations-title">Digital Iterations</h4>
+        </header>
+        <div className="case-study-digital-media">
+          {digitalIterations.map((iteration) => (
+            <ProjectVideo key={iteration.src} src={iteration.src} title={iteration.title} />
+          ))}
         </div>
       </section>
 

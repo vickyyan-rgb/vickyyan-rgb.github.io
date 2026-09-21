@@ -16,7 +16,7 @@ test('presents the PDF-inspired case-study story before the prototype chapter', 
     'Reveal something that is felt but not seen.',
     'Design Logic',
     'From placing to feeling',
-    'Turning temperature into a reliable interaction.',
+    'Physical Fabrication',
   ];
 
   const positions = storyBeats.map((beat) => html.indexOf(beat));
@@ -126,11 +126,9 @@ test('presents the revised drawings, hover-reveal journey, and reordered motion 
   }
 
   assert.equal((html.match(/class="case-study-reveal-card"/g) ?? []).length, 4);
-  assert.doesNotMatch(html, /Second draft/);
-
   const placingPosition = html.indexOf('From placing to feeling');
   const motionPosition = html.indexOf('You are a line, but which line?');
-  const prototypePosition = html.indexOf('Turning temperature into a reliable interaction.');
+  const prototypePosition = html.indexOf('>Prototypes<');
   assert.ok(placingPosition < motionPosition, 'motion studies should follow the placing-to-feeling journey');
   assert.ok(motionPosition < prototypePosition, 'motion studies should precede the prototype chapter');
   assert.match(
@@ -160,4 +158,76 @@ test('presents the revised drawings, hover-reveal journey, and reordered motion 
   assert.doesNotMatch(css, /\.case-study-manifesto p:last-child\s*\{[^}]*font-size:/);
   assert.match(css, /\.case-study-scope-relevance[^}]*border:\s*0/);
   assert.match(css, /\.you-me-case-study \.case-study-logic-diagram img[^}]*filter:\s*none/);
+});
+
+test('uses the revised opening story and centers the motion-study introduction', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  const opening = html.match(/<section class="case-study-opening"[\s\S]*?<blockquote>\s*<p>(.*?)<\/p>/)?.[1]
+    .replaceAll('&#x27;', "'")
+    .replaceAll('&apos;', "'");
+  assert.equal(opening, 'Our You / Me / We / It is sited within Café 059, a once-vital hub now silent. The installation aims to reactivate the space through inheriting their original subject matter, beverages as the input devise to translate into visualizations that reflects “social warmth”. The installation invites participants to be curious and follow their circle, seeing its encounters and comparing to its Neighbours. The visuals sends messages: when two drinks share a temperature, their circles align and blend into a unified hue, forming a connective geometry. This dynamic visualization serves as a metaphor for the social “temperature” and distance of the Daniels social fabric, using the tangible residue of interaction to create a live, data-driven portrait of the space\'s lost vitality, literally projecting energy back into the empty room.');
+
+  const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((match) => match[1]);
+  const css = (await Promise.all(stylesheetPaths.map(async (path) => {
+    const stylesheetResponse = await fetch(new URL(path, siteUrl));
+    assert.equal(stylesheetResponse.status, 200);
+    return stylesheetResponse.text();
+  }))).join('\n');
+  assert.match(css, /\.case-study-motion-studies \.case-study-process-header\s*\{[^}]*text-align:\s*center/);
+  assert.match(css, /\.case-study-motion-studies \.case-study-process-header h4[^}]*margin-inline:\s*auto/);
+  assert.match(css, /\.case-study-motion-studies \.case-study-process-header p[^}]*margin-inline:\s*auto/);
+});
+
+test('presents prototypes as aligned fabrication and digital iteration sequences', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  const designLogicPosition = html.indexOf('Design Logic');
+  const prototypesPosition = html.indexOf('>Prototypes<');
+  const fabricationPosition = html.indexOf('>Physical Fabrication<');
+  const digitalPosition = html.indexOf('>Digital Iterations<');
+  assert.ok(designLogicPosition < prototypesPosition);
+  assert.ok(prototypesPosition < fabricationPosition);
+  assert.ok(fabricationPosition < digitalPosition);
+
+  const fabricationAssets = [
+    '/projects/you-me-case-study/prototype.jpg',
+    '/projects/you-me-case-study/sensor-hardware.jpg',
+    '/projects/you-me-case-study/arduino-diagram.png',
+    '/projects/you-me-case-study/fabrication-demonstration.mp4',
+  ];
+  const fabricationPositions = fabricationAssets.map((asset) => html.indexOf(asset));
+  fabricationPositions.forEach((position, index) => {
+    assert.notEqual(position, -1, `missing fabrication asset: ${fabricationAssets[index]}`);
+    if (index > 0) assert.ok(fabricationPositions[index - 1] < position);
+  });
+  assert.doesNotMatch(html, /coaster-prototype-[12]\.jpg/);
+
+  const iterationVideos = [
+    '/projects/you-me-case-study/digital-iterations/recording-2025-09-30.mp4',
+    '/projects/you-me-case-study/digital-iterations/first-draft.mp4',
+    '/projects/you-me-case-study/digital-iterations/second-draft.mp4',
+    '/projects/you-me-case-study/digital-iterations/recording-2025-10-01.mp4',
+  ];
+  const iterationPositions = iterationVideos.map((asset) => html.indexOf(asset));
+  iterationPositions.forEach((position, index) => {
+    assert.notEqual(position, -1, `missing digital iteration: ${iterationVideos[index]}`);
+    if (index > 0) assert.ok(iterationPositions[index - 1] < position);
+  });
+
+  const stylesheetPaths = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((match) => match[1]);
+  const css = (await Promise.all(stylesheetPaths.map(async (path) => {
+    const stylesheetResponse = await fetch(new URL(path, siteUrl));
+    assert.equal(stylesheetResponse.status, 200);
+    return stylesheetResponse.text();
+  }))).join('\n');
+  assert.match(css, /\.case-study-prototypes>h3[^}]*font-size:\s*var\(--case-xl\)/);
+  assert.match(css, /\.case-study-fabrication-media[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /\.case-study-digital-media[^}]*grid-template-columns:\s*1fr/);
 });
