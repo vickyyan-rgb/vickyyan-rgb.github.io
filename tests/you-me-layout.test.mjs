@@ -108,7 +108,7 @@ test('uses one five-level responsive typography hierarchy throughout the case st
   assert.match(css, /#you-me-we-it>summary :is\(\.project-number,\.project-field,\.project-year\)[^}]*font-size:\s*var\(--case-xs\)/);
 });
 
-test('centers every case-study image and video at half width while preserving mobile readability', async () => {
+test('restores the original case-study composition while keeping prototype and digital iteration media compact', async () => {
   const response = await fetch(siteUrl);
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -126,12 +126,14 @@ test('centers every case-study image and video at half width while preserving mo
     return stylesheetResponse.text();
   }))).join('\n');
 
-  assert.match(css, /\.you-me-case-study\s*\{[^}]*--case-media-width:\s*50%/);
-  assert.match(css, /\.you-me-case-study>\.project-video[^}]*width:\s*var\(--case-media-width\)[^}]*margin-inline:\s*auto/);
-  assert.match(css, /\.you-me-case-study \.case-study-opening-image[^}]*width:\s*var\(--case-media-width\)[^}]*margin-inline:\s*auto/);
-  assert.match(css, /\.you-me-case-study :is\([^}]*\.case-study-motion-grid[^}]*grid-template-columns:\s*1fr/);
-  assert.match(css, /\.you-me-case-study :is\([^}]*\.case-study-installation-grid[^}]*grid-template-columns:\s*1fr/);
-  assert.match(css, /@media\s*\(max-width:700px\)[\s\S]*\.you-me-case-study\s*\{[^}]*--case-media-width:\s*100%/);
+  assert.doesNotMatch(css, /\.you-me-case-study\s*\{[^}]*--case-media-width:/);
+  assert.match(css, /\.case-study-design-logic>ol\s*\{[^}]*grid-template-columns:\s*repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.case-study-motion-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.case-study-installation-grid\s*\{[^}]*grid-template-columns:\s*\.72fr 1\.25fr \.72fr/);
+  assert.match(css, /\.case-study-final-grid\s*\{[^}]*grid-template-columns:\s*repeat\(12,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.you-me-case-study \.case-study-fabrication-media>figure\s*\{[^}]*width:\s*50%[^}]*margin-inline:\s*auto/);
+  assert.match(css, /\.you-me-case-study \.case-study-digital-media>\.project-video\s*\{[^}]*width:\s*50%[^}]*margin-inline:\s*auto/);
+  assert.match(css, /@media\s*\(max-width:700px\)[\s\S]*\.you-me-case-study :is\(\.case-study-fabrication-media>figure,\.case-study-digital-media>\.project-video\)\s*\{[^}]*width:\s*100%/);
 });
 
 test('removes the approach label and presents the remaining statement as small centered text', async () => {
