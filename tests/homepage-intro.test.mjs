@@ -26,3 +26,11 @@ test('presents Product Designer and Human-AI Interaction on separate lines', asy
   );
   assert.doesNotMatch(html, /Product · Interaction · Experience/);
 });
+
+test('omits the redundant project-opening prompt', async () => {
+  const response = await fetch(homeUrl);
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.doesNotMatch(html, /Open a project to explore/);
+});
