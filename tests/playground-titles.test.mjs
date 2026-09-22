@@ -58,4 +58,11 @@ test('uses the three supplied thumbnail images in the approved order', async () 
     const imageResponse = await fetch(new URL(thumbnail, siteUrl));
     assert.equal(imageResponse.status, 200);
   }
+
+  const thumbnailSources = [...html.matchAll(/<img[^>]+src="([^"]+)"/g)]
+    .map((match) => match[1])
+    .filter((src) => src.includes('/playground/'));
+
+  assert.deepEqual(thumbnailSources, thumbnails);
+  assert.doesNotMatch(html, /\/_next\/image\?url=/);
 });

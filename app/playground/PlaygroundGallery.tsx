@@ -125,6 +125,7 @@ export default function PlaygroundGallery() {
                 alt={project.thumbnailAlt}
                 width={1600}
                 height={900}
+                unoptimized
                 sizes="(max-width: 700px) calc(100vw - 44px), 46vw"
                 priority={index === 0}
               />
@@ -160,6 +161,7 @@ export default function PlaygroundGallery() {
                 alt={`${activeProject.title} structural prototype`}
                 width={4032}
                 height={3024}
+                unoptimized
                 sizes="100vw"
               />
             )}
