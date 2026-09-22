@@ -5,6 +5,8 @@ import Link from 'next/link';
 import ProjectVideo from './ProjectVideo';
 import YouMeWeItCaseStudy from './YouMeWeItCaseStudy';
 import EmbodiedCognitionCaseStudy from './EmbodiedCognitionCaseStudy';
+import SketchARoomCaseStudy from './SketchARoomCaseStudy';
+import BlockSketchCaseStudy from './BlockSketchCaseStudy';
 import { useDynamicReveal } from './useDynamicReveal';
 
 type Project = {
@@ -36,7 +38,7 @@ const projects: Project[] = [
     summary: 'A communal installation where participants contribute responsive digital “blobs,” making individual presence, collective engagement, and even moments of non-participation visible within a shared environment.',
   },
   {
-    number: '03', slug: 'sketch-a-home', title: 'Sketch-a-home', year: '2025', field: 'Human-AI spatial interface',
+    number: '03', slug: 'sketch-a-home', title: 'Sketch-a-room', year: '2025', field: 'Human-AI spatial interface',
     cover: '/projects/sketch-ai-zoom.png',
     gallery: ['/projects/sketch-central-hand.jpg', '/projects/sketch-process.jpg', '/projects/sketch-hand-click.jpg'],
     video: `${MEDIA_BASE}/sketch-a-home.mp4`,
@@ -140,7 +142,7 @@ export default function Home() {
           <div className="landing-copy">
             <p>Vicky Yan</p>
             <h1>Product Designer /<br />Human-AI Interaction</h1>
-            <span>I&apos;m a multidisciplinary designer exploring how AI and emerging technologies can reshape the way people interact with products and environments.</span>
+            <span>My practice moves fluidly between physical prototyping, digital product design, and human-centered research, using AI and emerging technologies to create more intuitive relationships between people, products, and space.</span>
             <div className="discipline-nav" aria-label="Explore Vicky Yan's work by discipline">
               <Link href="/architecture">Architecture</Link>
               <Link href="/base-photo" onClick={enterStudy}>Design</Link>
@@ -170,6 +172,10 @@ export default function Home() {
                   <YouMeWeItCaseStudy video={project.video} />
                 ) : project.slug === 'embodied-cognition' && project.video ? (
                   <EmbodiedCognitionCaseStudy video={project.video} />
+                ) : project.slug === 'sketch-a-home' && project.video ? (
+                  <SketchARoomCaseStudy video={project.video} />
+                ) : project.slug === 'block-sketch' && project.video ? (
+                  <BlockSketchCaseStudy video={project.video} />
                 ) : (
                 <div className="project-body">
                   <div className="project-opening" aria-hidden="true">

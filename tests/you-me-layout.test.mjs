@@ -352,3 +352,27 @@ test('presents technical application, digital iterations, and fabrication in seq
   assert.match(css, /\.case-study-fabrication-hero\s*\{[^}]*grid-column:\s*1\/-1/);
   assert.match(css, /\.case-study-material-comparison\s*\{[^}]*grid-template-columns:\s*repeat\(2,minmax\(0,1fr\)\)/);
 });
+
+test('ends You / Me / We / It with gesture instructions and the interactive TRY ME link', async () => {
+  const response = await fetch(siteUrl);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const caseStudyHtml = html.match(/<details class="project" id="you-me-we-it">([\s\S]*?)<details class="project" id="embodied-cognition">/)?.[1];
+  assert.ok(caseStudyHtml, 'expected the You / Me / We / It case study to render');
+
+  const finalImagePosition = caseStudyHtml.indexOf('/projects/you-me-case-study/final/cafe-installation.jpg');
+  const instructionsPosition = caseStudyHtml.indexOf('/projects/you-me-case-study/interaction-instructions.png');
+  const tryMePosition = caseStudyHtml.indexOf('>TRY ME<');
+  const backPosition = caseStudyHtml.indexOf('>Back to interactive study<');
+
+  assert.ok(finalImagePosition < instructionsPosition, 'instructions should follow the final installation gallery');
+  assert.ok(instructionsPosition < tryMePosition, 'TRY ME should follow the instructions');
+  assert.ok(tryMePosition < backPosition, 'TRY ME should remain above the project return link');
+  assert.match(
+    caseStudyHtml,
+    /<a[^>]+href="https:\/\/editor\.p5js\.org\/vic2004322\/full\/dWHlrsP8J"[^>]+target="_blank"[^>]+rel="noopener noreferrer"[^>]*>TRY ME<\/a>/,
+  );
+
+  const assetResponse = await fetch(new URL('/projects/you-me-case-study/interaction-instructions.png', siteUrl));
+  assert.equal(assetResponse.status, 200, 'gesture instruction image should be served locally');
+});

@@ -8,3 +8,11 @@ test('positions the You / Me / We / It title farther left within its hotspot', (
 
   assert.deepEqual(position, { left: 570, top: 415 });
 });
+
+test('moves only Block / Sketch lower within the bottom row', () => {
+  const rect = { width: 1200, height: 900 };
+
+  assert.deepEqual(titlePositionForProject(rect, 'sketch-a-home'), { left: 200, top: 675 });
+  assert.deepEqual(titlePositionForProject(rect, 'block-sketch'), { left: 600, top: 738 });
+  assert.deepEqual(titlePositionForProject(rect, 'block'), { left: 1000, top: 675 });
+});

@@ -315,6 +315,22 @@ export default function YouMeWeItCaseStudy({ video }: YouMeWeItCaseStudyProps) {
         </div>
       </section>
 
+      <section className="case-study-try-me" aria-label="Try the You / Me / We / It interaction">
+        <figure>
+          <img
+            src={`${CASE_ASSET}/interaction-instructions.png`}
+            alt="Three hand gestures for creating a shape, changing its colour, and dropping it into the scene"
+            loading="lazy"
+          />
+        </figure>
+        <a
+          className="case-study-try-me-link"
+          href="https://editor.p5js.org/vic2004322/full/dWHlrsP8J"
+          target="_blank"
+          rel="noopener noreferrer"
+        >TRY ME</a>
+      </section>
+
       <a className="project-back" href="/base-photo?instant=1"><span>Back to interactive study</span></a>
     </div>
   );

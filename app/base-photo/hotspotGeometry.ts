@@ -8,7 +8,7 @@ type HotspotRect = {
 export function titlePositionForProject(rect: HotspotRect, project: ProjectSlug) {
   if (project === 'embodied-cognition') return { left: rect.width * 0.75, top: rect.height * 0.25 };
   if (project === 'sketch-a-home') return { left: rect.width / 6, top: rect.height * 0.75 };
-  if (project === 'block-sketch') return { left: rect.width * 0.5, top: rect.height * 0.75 };
+  if (project === 'block-sketch') return { left: rect.width * 0.5, top: rect.height * 0.82 };
   if (project === 'block') return { left: rect.width * (5 / 6), top: rect.height * 0.75 };
 
   const sourceWidth = 2702;

@@ -7,7 +7,7 @@ import { titlePositionForProject, type ProjectSlug } from './hotspotGeometry';
 const PROJECT_TITLES: Record<ProjectSlug, string> = {
   'you-me-we-it': 'You / Me / We / It',
   'embodied-cognition': 'Embodied Cognition',
-  'sketch-a-home': 'Sketch-a-home',
+  'sketch-a-home': 'Sketch-a-room',
   'block-sketch': 'Block / Sketch',
   block: 'Block',
 };
@@ -102,7 +102,7 @@ export default function BasePhotoPage() {
       {hotspotTitle && (
         <p
           key={hotspotTitle.project}
-          className="base-hotspot-title"
+          className={`base-hotspot-title base-hotspot-title--${hotspotTitle.project}`}
           style={{ left: hotspotTitle.left, top: hotspotTitle.top }}
           aria-live="polite"
         >
